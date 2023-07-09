@@ -1,0 +1,17 @@
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.home-wrapper.navbar-hidden .content {
+  flex: 1;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+}
+
+.main-content .content {
+  width: 100%;
+}

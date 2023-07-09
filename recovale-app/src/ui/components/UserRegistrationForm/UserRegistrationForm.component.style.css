@@ -1,16 +1,15 @@
-.login-form {
+.user-registration-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #184d47;
+  background-color: #184D47;
   padding: 2.2rem;
   border-radius: 12px;
   width: 420px;
-  height: 300px;
 }
 
-.login-form input {
+.user-registration-form input {
   border: none;
   border-bottom: 2px solid black;
   background-color: transparent;
@@ -21,41 +20,32 @@
   width: 100%;
 }
 
-.login-form input::placeholder {
+.user-registration-form input::placeholder {
   color: #fafafa;
 }
 
-.login-form input:focus {
-  outline: none;
+.user-registration-form input:focus {
+  outline: none
 }
 
-.login-form button {
+.user-registration-form button {
+  margin-bottom: 1rem;
   border-radius: 8px;
   border: none;
 }
 
-.login-form button:hover {
+.user-registration-form button:hover {
   cursor: pointer;
 }
 
-.login-form .forgot-password-button {
-  font-size: 0.75rem;
-  background-color: transparent;
-  border: none;
-  color: #fafafa;
-  margin-bottom: 2rem;
-}
-
-.login-form .login-button {
+.user-registration-form .user-registration-button {
   width: 100%;
   padding: 0.2rem;
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 1rem;
 }
 
-.login-form .registration-button {
-  width: 35%;
+.user-registration-form .login-existing-account-button {
   font-size: 0.75rem;
   padding: 0.3rem;
 }

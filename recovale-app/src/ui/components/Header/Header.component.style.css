@@ -1,0 +1,50 @@
+.header-wrapper {
+  display: flex;
+  background-color: #f8f8f8;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.header-wrapper button {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  bottom: -15px;
+  border-radius: 8px;
+  border: none;
+  z-index: 20;
+  left: 2px;
+  background-color: #333;
+}
+
+.header-wrapper button .bar1,
+.bar2,
+.bar3 {
+  width: 25px;
+  height: 3.5px;
+  background-color: #fafafa;
+  margin: 3.2px 0;
+  transition: 0.4s;
+}
+
+.header-wrapper button.active .bar1 {
+  transform: translate(0, 6.5px) rotate(-45deg);
+}
+
+.header-wrapper button.active .bar2 {
+  opacity: 0;
+}
+
+.header-wrapper button.active .bar3 {
+  transform: translate(0, -6.5px) rotate(45deg);
+}
+
+.header-wrapper h1 {
+  margin: 1rem;
+}
+
+.header-wrapper p {
+  font-size: 0.8rem;
+}

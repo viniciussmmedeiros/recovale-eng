@@ -1,5 +1,4 @@
-export { Header } from './Header/Header.component'
-export { UserWidget } from './UserWidget/UserWidget.component'
-export { RegistrationForm } from './RegistrationForm/RegistrationForm.component'
-export { LoginForm } from './LoginForm/LoginForm.component'
-export { LoginRegisterModal } from './LoginRegisterModal/LoginRegisterModal.component'
+export { Header } from "./Header/Header.component";
+export { UserRegistrationForm } from "./UserRegistrationForm/UserRegistrationForm.component";
+export { LoginForm } from "./LoginForm/LoginForm.component";
+export { Navbar } from "./Navbar/Navbar.component";

@@ -1,0 +1,8 @@
+.rewards-search-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.claim-rewards-screen {
+  gap: 0.5rem;
+}
