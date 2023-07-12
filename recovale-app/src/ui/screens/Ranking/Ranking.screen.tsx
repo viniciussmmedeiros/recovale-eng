@@ -1,9 +1,9 @@
-import "./AccountProfile.screen.style.css";
+import "./Ranking.screen.style.css";
 
-export function AccountProfileScreen() {
+export function RankingScreen() {
   return (
     <section className="page-content">
-      <h2>Seu Perfil</h2>
+      <h2>Ranking</h2>
       <span>Ainda não implementado.</span>
     </section>
   );

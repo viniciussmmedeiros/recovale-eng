@@ -1,22 +1,103 @@
+import { useAccountData } from "../../../context/account/account.context";
+import { useRewardApi } from "../../../hooks/reward/use-reward-api.hook";
+import { useUserSenderApi } from "../../../hooks/userSender/use-user-sender-api.hook";
+import { RewardCard } from "../../components";
 import "./ClaimReward.screen.style.css";
+import { useEffect, useState } from "react";
+
+interface Reward {
+  id: number;
+  title: string;
+  description: string;
+  points: number;
+  quantityAvailable: number;
+}
+
+interface UserPointsData {
+  currentPoints: number;
+  totalPoints: number;
+}
 
 export function ClaimRewardScreen() {
+  const rewardApi = useRewardApi();
+  const userSenderApi = useUserSenderApi();
+  const [accountData] = useAccountData();
+  const [rewardsList, setRewardsList] = useState<Reward[] | null>(null);
+  const [pointsFilter, setPointsFilter] = useState<string | null>(null);
+  const [resetSearch, setResetSearch] = useState(false);
+  const [userPointsData, setUserPointsData] = useState<UserPointsData | null>(
+    null
+  );
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userPointsResponse = await userSenderApi.getPoints(accountData.id);
+
+      setUserPointsData(userPointsResponse);
+    };
+
+    fetchUserData();
+  }, [resetSearch]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const listResponse = await rewardApi.getRewardsList(pointsFilter);
+
+      setRewardsList(listResponse);
+    };
+
+    fetchData();
+  }, [resetSearch]);
+
+  const handleClearFilter = () => {
+    setPointsFilter(null);
+    setResetSearch(!resetSearch);
+  };
+
+  const handleClaimReward = (rewardId: number, userId = accountData.id) => {
+    const claimReward = async () => {
+      await rewardApi.claimReward(rewardId, userId);
+
+      setResetSearch(!resetSearch);
+    };
+
+    claimReward();
+  };
+
   return (
     <section className="page-content claim-rewards-screen">
       <h2>Resgatar Recompensas</h2>
-      <span>Seus pontos: 999999</span>
+      <span>
+        Seus pontos: {userPointsData?.currentPoints} | Pontos totais:{" "}
+        {userPointsData?.totalPoints}
+      </span>
       <div className="rewards-search-wrapper">
-        <label htmlFor="">Faixa de Pontos</label>
-        <select name="" id="">
-          <option value="">Selecionar</option>
-          <option value="">Até 100</option>
-          <option value="">100~200</option>
-          <option value="">200+</option>
-        </select>
-        <button>Filtrar</button>
-        <button>Limpar filtro</button>
+        <label htmlFor="">Valor máximo de pontos:</label>
+        <input
+          type="range"
+          min="1"
+          max="500"
+          step="1"
+          value={pointsFilter === null ? "" : pointsFilter}
+          onChange={(e) => setPointsFilter(e.target.value)}
+        />
+        {pointsFilter}
+        <button onClick={() => setResetSearch(!resetSearch)}>Filtrar</button>
+        <button onClick={() => handleClearFilter()}>Limpar filtro</button>
       </div>
-      <section className="rewards-list-wrapper"></section>
+      <section className="rewards-list-wrapper">
+        {rewardsList && rewardsList.length > 0 ? (
+          rewardsList.map((reward) => (
+            <RewardCard
+              key={reward.id}
+              data={reward}
+              handleClaim={handleClaimReward}
+            />
+          ))
+        ) : (
+          <span>Nenhuma recompensa disponível.</span>
+        )}
+      </section>
     </section>
   );
 }

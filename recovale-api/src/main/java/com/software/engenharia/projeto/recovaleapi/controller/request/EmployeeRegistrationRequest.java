@@ -1,6 +1,7 @@
 package com.software.engenharia.projeto.recovaleapi.controller.request;
 
-import com.software.engenharia.projeto.recovaleapi.enums.AccountType;
+import com.software.engenharia.projeto.recovaleapi.enums.EmployeeType;
+import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -17,5 +18,5 @@ public class EmployeeRegistrationRequest {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private AccountType type;
+    private EmployeeType type;
 }

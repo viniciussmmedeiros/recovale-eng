@@ -1,0 +1,24 @@
+.reward-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #494949;
+  padding: 1rem;
+  border-radius: 12px;
+  gap: 0.2rem;
+}
+
+.reward-card p {
+  margin: 0;
+}
+
+.reward-card button {
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s;
+}
+
+.reward-card button:hover {
+  background-color: #a3a2a2;
+  color: #fafafa;
+  cursor: pointer;
+}

@@ -7,7 +7,13 @@ import {
   LayoutScreen,
   LoginRegistrationScreen,
   ClaimRewardScreen,
+  ManageCollectionPointsScreen,
+  ManageRewardsScreen,
+  SearchCollectionPointsScreen,
+  RankingScreen,
 } from "./ui/screens";
+import { ManageRegistrationsScreen } from "./ui/screens/ManageRegistrations/ManageRegistrations.screen";
+import { SchedulePickupScreen } from "./ui/screens/SchedulePickup/SchedulePickup.screen";
 
 function App() {
   return (
@@ -43,6 +49,54 @@ function App() {
           element={
             <LayoutScreen>
               <ClaimRewardScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/collection-points-management"
+          element={
+            <LayoutScreen>
+              <ManageCollectionPointsScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/rewards-management"
+          element={
+            <LayoutScreen>
+              <ManageRewardsScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/registrations-management"
+          element={
+            <LayoutScreen>
+              <ManageRegistrationsScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/search-collection-points"
+          element={
+            <LayoutScreen>
+              <SearchCollectionPointsScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/ranking"
+          element={
+            <LayoutScreen>
+              <RankingScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/schedule-pickup"
+          element={
+            <LayoutScreen>
+              <SchedulePickupScreen />
             </LayoutScreen>
           }
         />

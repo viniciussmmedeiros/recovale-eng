@@ -1,5 +1,5 @@
 package com.software.engenharia.projeto.recovaleapi.enums;
 
-public enum AccountType {
-    USER, ADMIN, COLLECTOR
+public enum UserType {
+    SENDER, RECIPIENT
 }

@@ -11,7 +11,9 @@ import com.software.engenharia.projeto.recovaleapi.model.User;
 import com.software.engenharia.projeto.recovaleapi.repository.EmployeeRepository;
 import com.software.engenharia.projeto.recovaleapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import static java.util.Objects.nonNull;
 
@@ -41,7 +43,7 @@ public class AuthService {
             return EmployeeMapper.toResponse(employeeEntity);
         }
 
-        throw new RuntimeException("Account not found");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado.");
     }
 
     public LoginResponse registerUser(UserRegistrationRequest request) {

@@ -52,7 +52,7 @@ export function UserRegistrationForm({ switchForm }: any) {
       <input
         type="text"
         name="cpf"
-        placeholder="CPF"
+        placeholder="CPF ou CNPJ"
         onChange={(e) => handleSetRegistrationData(e)}
       />
       <input

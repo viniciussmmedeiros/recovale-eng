@@ -1,6 +1,6 @@
 package com.software.engenharia.projeto.recovaleapi.controller.response;
 
-import com.software.engenharia.projeto.recovaleapi.enums.AccountType;
+import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
@@ -12,7 +12,7 @@ public class LoginResponse {
 
     private Long id;
     @Enumerated(EnumType.STRING)
-    private AccountType type;
+    private String type;
     private String username;
     private String email;
     private String cpf;

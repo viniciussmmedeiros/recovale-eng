@@ -48,3 +48,13 @@
 .header-wrapper p {
   font-size: 0.8rem;
 }
+
+.header-wrapper .app-name-info {
+  display: flex;
+  align-items: center;
+}
+
+.header-wrapper .app-name-info .account-type {
+  color: red;
+  font-weight: bold;
+}

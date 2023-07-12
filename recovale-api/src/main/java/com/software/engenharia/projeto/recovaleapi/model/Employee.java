@@ -1,6 +1,7 @@
 package com.software.engenharia.projeto.recovaleapi.model;
 
-import com.software.engenharia.projeto.recovaleapi.enums.AccountType;
+import com.software.engenharia.projeto.recovaleapi.enums.EmployeeType;
+import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class Employee {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private AccountType type;
+    private EmployeeType type;
 
     @Column(nullable = false)
     private String username;

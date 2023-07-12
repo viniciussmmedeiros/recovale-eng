@@ -22,7 +22,7 @@
 .navbar ul li a,
 .navbar ul li.last-item {
   background-color: aquamarine;
-  padding: 1rem;
+  padding: 0.75rem;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid black;

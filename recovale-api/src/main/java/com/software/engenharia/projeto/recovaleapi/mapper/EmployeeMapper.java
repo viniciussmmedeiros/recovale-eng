@@ -9,7 +9,7 @@ public class EmployeeMapper {
         LoginResponse response = new LoginResponse();
 
         response.setId(entity.getId());
-        response.setType(entity.getType());
+        response.setType(entity.getType().toString());
         response.setUsername(entity.getUsername());
 
         return response;

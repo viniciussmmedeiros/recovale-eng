@@ -28,6 +28,19 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
           <li>
             <Link to="/your-profile">Meu Perfil</Link>
           </li>
+          {accountData &&
+            (accountData.type === "ADMIN" || accountData.type === "SENDER") && (
+              <>
+                <li>
+                  <Link to="/search-collection-points">
+                    Consultar Pontos de Coleta
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ranking">Consultar Ranking</Link>
+                </li>
+              </>
+            )}
           {accountData && accountData.type === "ADMIN" && (
             <>
               <li>
@@ -37,14 +50,29 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
                 <Link to="/register-collector">Cadastrar Coletor</Link>
               </li>
               <li>
+                <Link to="/registrations-management">Consultar Cadastros</Link>
+              </li>
+              <li>
                 <Link to="/rewards-management">Gerenciar Recompensas</Link>
+              </li>
+              <li>
+                <Link to="/collection-points-management">
+                  Gerenciar Pontos de Coleta
+                </Link>
               </li>
             </>
           )}
-          {accountData && accountData.type === "USER" && (
+          {accountData && accountData.type === "SENDER" && (
             <>
               <li>
                 <Link to="/search-rewards">Resgatar Recompensas</Link>
+              </li>
+            </>
+          )}
+          {accountData && accountData.type === "RECIPIENT" && (
+            <>
+              <li>
+                <Link to="/schedule-pickup">Agendar Retirada</Link>
               </li>
             </>
           )}
