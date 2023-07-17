@@ -1,0 +1,55 @@
+.user-registration-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #184d47;
+  padding: 2.2rem;
+  border-radius: 12px;
+  width: 420px;
+}
+
+.user-registration-form input {
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem;
+  color: #fafafa;
+  width: 100%;
+}
+
+.user-registration-form input::placeholder {
+  color: #fafafa;
+}
+
+.user-registration-form input:focus {
+  outline: none;
+}
+
+.user-registration-form button {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #fafafa;
+  transition: 0.2s;
+}
+
+.user-registration-form button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.user-registration-form .user-registration-button {
+  width: 100%;
+  padding: 0.2rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.user-registration-form .login-existing-account-button {
+  font-size: 0.75rem;
+  padding: 0.3rem;
+  background-color: #c5c5c5;
+}

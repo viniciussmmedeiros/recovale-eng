@@ -1,0 +1,45 @@
+.rewards-search-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.claim-rewards-screen {
+  gap: 0.5rem;
+}
+
+.rewards-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 32rem;
+  overflow-y: scroll;
+}
+
+.rewards-search-wrapper .buttons-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rewards-search-wrapper .buttons-wrapper button {
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #fafafa;
+  transition: 0.2s;
+}
+
+.rewards-search-wrapper .buttons-wrapper .filter-btn {
+  background-color: #30a43c;
+  color: #fafafa;
+}
+
+.rewards-search-wrapper .buttons-wrapper .clear-btn {
+  background-color: rgb(161, 33, 33);
+  color: #fafafa;
+}
+
+.rewards-search-wrapper .buttons-wrapper .filter-btn:hover,
+.rewards-search-wrapper .buttons-wrapper .clear-btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
