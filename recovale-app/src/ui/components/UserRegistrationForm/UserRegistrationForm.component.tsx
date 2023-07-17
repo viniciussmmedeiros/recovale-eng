@@ -38,6 +38,11 @@ export function UserRegistrationForm({ switchForm }: any) {
       const user = await authApi.registerUser(registrationData);
 
       setAccountData(user);
+      setToastData({
+        show: true,
+        customClass: "success",
+        message: "Cadastrado com sucesso!",
+      });
 
       navigate("/your-profile");
     } catch (error) {
