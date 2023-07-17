@@ -49,7 +49,7 @@ export function UserRegistrationForm({ switchForm }: any) {
       const err = error as AxiosError<{ message: string }>;
       setToastData({
         show: true,
-        message: "Dados inválidos.",
+        message: err.response?.data.message,
         customClass: "error",
       });
     }

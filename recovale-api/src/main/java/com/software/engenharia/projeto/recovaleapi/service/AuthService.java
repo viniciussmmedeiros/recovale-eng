@@ -49,6 +49,12 @@ public class AuthService {
     public LoginResponse registerUser(UserRegistrationRequest request) {
         User user = UserMapper.toEntity(request);
 
+        boolean existingUserCpfCnpj = userRepository.findByCpfCnpj(request.getCpf());
+
+        if(existingUserCpfCnpj) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CPF / CNPJ já cadastrado.");
+        }
+
         userRepository.save(user);
 
         LoginRequest loginRequest = new LoginRequest();
