@@ -1,7 +1,7 @@
 .reward-card {
   display: flex;
   flex-direction: column;
-  background-color: #494949;
+  background-color: #004d41;
   padding: 1rem;
   border-radius: 12px;
   gap: 0.2rem;
@@ -15,10 +15,10 @@
   border-radius: 8px;
   border: none;
   transition: 0.2s;
+  padding: 0.25rem;
 }
 
 .reward-card button:hover {
-  background-color: #a3a2a2;
-  color: #fafafa;
+  opacity: 0.8;
   cursor: pointer;
 }

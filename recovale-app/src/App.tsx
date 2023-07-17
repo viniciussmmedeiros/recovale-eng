@@ -14,10 +14,12 @@ import {
 } from "./ui/screens";
 import { ManageRegistrationsScreen } from "./ui/screens/ManageRegistrations/ManageRegistrations.screen";
 import { SchedulePickupScreen } from "./ui/screens/SchedulePickup/SchedulePickup.screen";
+import { Toast } from "./ui/components/Toast/Toast.component";
 
 function App() {
   return (
     <>
+      <Toast />
       <Routes>
         <Route path="*" element={<LoginRegistrationScreen />} />
         <Route

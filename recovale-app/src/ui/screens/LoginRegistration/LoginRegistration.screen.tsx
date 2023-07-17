@@ -1,5 +1,5 @@
-import { LoginForm, UserRegistrationForm } from "../../components";
 import "./LoginRegistration.screen.style.css";
+import { LoginForm, UserRegistrationForm } from "../../components";
 import { useState } from "react";
 
 const FORMS = {

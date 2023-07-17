@@ -14,6 +14,7 @@ public class UserMapper {
         response.setUsername(entity.getUsername());
         response.setEmail(entity.getEmail());
         response.setCpf(entity.getCpf());
+        response.setPassword(entity.getPassword());
 
         return response;
     }

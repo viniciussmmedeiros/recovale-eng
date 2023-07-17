@@ -11,6 +11,7 @@ public class EmployeeMapper {
         response.setId(entity.getId());
         response.setType(entity.getType().toString());
         response.setUsername(entity.getUsername());
+        response.setPassword(entity.getPassword());
 
         return response;
     }

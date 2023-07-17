@@ -1,6 +1,6 @@
+import "./Layout.screen.style.css";
 import { useState } from "react";
 import { Header, Navbar } from "../../components";
-import "./Layout.screen.style.css";
 
 export function LayoutScreen({ children }: any) {
   const [showNavbar, setShowNavbar] = useState(true);

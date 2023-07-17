@@ -1,8 +1,10 @@
-import { useState } from "react";
 import "./LoginForm.component.style.css";
-import { useAuthApi } from "../../../hooks/auth/use-auth-api.hook";
+import { useState } from "react";
+import { useAuthApi } from "../../../hooks/authApi/use-auth-api.hook";
 import { useAccountData } from "../../../context/account/account.context";
 import { useNavigate } from "react-router-dom";
+import { useToastData } from "../../../context/toast/toast.context";
+import { AxiosError } from "axios";
 
 const LOGIN_DATA = {
   username: "",
@@ -10,6 +12,7 @@ const LOGIN_DATA = {
 };
 
 export function LoginForm({ switchForm }: any) {
+  const [toastData, setToastData] = useToastData();
   const authApi = useAuthApi();
   const navigate = useNavigate();
   const [, setAccountData] = useAccountData();
@@ -32,10 +35,16 @@ export function LoginForm({ switchForm }: any) {
       const loginResponse = await authApi.login(loginData);
 
       setAccountData(loginResponse);
-
+      setToastData({ show: true, customClass: "success", message: "Logado!" });
       navigate("/your-profile");
     } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
       console.log(error);
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
     }
   };
 

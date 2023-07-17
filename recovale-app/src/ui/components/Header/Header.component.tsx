@@ -1,6 +1,5 @@
-import { useAccountData } from "../../../context/account/account.context";
 import "./Header.component.style.css";
-import { Link } from "react-router-dom";
+import { useAccountData } from "../../../context/account/account.context";
 
 export function Header({ setShowNavbar, showNavbar }: any) {
   const [accountData] = useAccountData();

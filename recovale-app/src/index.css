@@ -9,15 +9,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #141d26;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #394859;
+  background-color: transparent;
   border-radius: 0.31rem;
   width: 0.31rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #343f4d;
+  background: transparent;
 }

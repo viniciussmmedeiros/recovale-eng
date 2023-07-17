@@ -12,7 +12,7 @@
 
 .login-form input {
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   background-color: transparent;
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -32,10 +32,13 @@
 .login-form button {
   border-radius: 8px;
   border: none;
+  background-color: #fafafa;
+  transition: 0.2s;
 }
 
 .login-form button:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .login-form .forgot-password-button {
@@ -58,4 +61,5 @@
   width: 35%;
   font-size: 0.75rem;
   padding: 0.3rem;
+  background-color: #c5c5c5;
 }

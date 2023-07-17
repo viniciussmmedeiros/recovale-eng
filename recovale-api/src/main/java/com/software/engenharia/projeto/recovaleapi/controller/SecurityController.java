@@ -7,19 +7,21 @@ import com.software.engenharia.projeto.recovaleapi.controller.response.LoginResp
 import com.software.engenharia.projeto.recovaleapi.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Validated
 @RequestMapping("/auth")
 public class SecurityController {
     @Autowired
     private AuthService service;
 
     @PostMapping("/login")
-    public LoginResponse login(@Valid @RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) {
         return service.getLoginResponse(request);
     }
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "./Navbar.component.style.css";
+import { useEffect } from "react";
 import { useAccountData } from "../../../context/account/account.context";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";

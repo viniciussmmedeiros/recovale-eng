@@ -40,7 +40,7 @@ public class RewardService {
 
         User user = handleUserService.fetchById(userId);
 
-        if(user.getCurrentPoints() <= reward.getPoints()) {
+        if(user.getCurrentPoints() < reward.getPoints()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Você não tem pontos suficientes.");
         }
 

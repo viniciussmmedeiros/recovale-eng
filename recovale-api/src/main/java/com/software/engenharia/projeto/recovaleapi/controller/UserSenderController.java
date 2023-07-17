@@ -1,12 +1,10 @@
 package com.software.engenharia.projeto.recovaleapi.controller;
 
+import com.software.engenharia.projeto.recovaleapi.controller.request.UserUpdateRequest;
 import com.software.engenharia.projeto.recovaleapi.controller.response.UserSenderPointsResponse;
 import com.software.engenharia.projeto.recovaleapi.service.UserSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user-sender")
@@ -17,5 +15,10 @@ public class UserSenderController {
     @GetMapping("/{userId}/points")
     public UserSenderPointsResponse getPoints(@PathVariable Long userId) {
         return service.getPoints(userId);
+    }
+
+    @PutMapping("/{userId}/update")
+    public void updateProfile(@PathVariable Long userId, @RequestBody UserUpdateRequest request) {
+        service.updateProfile(userId, request);
     }
 }

@@ -1,7 +1,6 @@
 package com.software.engenharia.projeto.recovaleapi.model;
 
 import com.software.engenharia.projeto.recovaleapi.enums.EmployeeType;
-import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

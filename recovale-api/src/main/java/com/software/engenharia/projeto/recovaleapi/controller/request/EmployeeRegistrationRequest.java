@@ -1,7 +1,6 @@
 package com.software.engenharia.projeto.recovaleapi.controller.request;
 
 import com.software.engenharia.projeto.recovaleapi.enums.EmployeeType;
-import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;

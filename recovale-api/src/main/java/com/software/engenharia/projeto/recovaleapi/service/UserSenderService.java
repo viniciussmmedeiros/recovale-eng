@@ -1,5 +1,6 @@
 package com.software.engenharia.projeto.recovaleapi.service;
 
+import com.software.engenharia.projeto.recovaleapi.controller.request.UserUpdateRequest;
 import com.software.engenharia.projeto.recovaleapi.controller.response.UserSenderPointsResponse;
 import com.software.engenharia.projeto.recovaleapi.model.User;
 import com.software.engenharia.projeto.recovaleapi.repository.UserRepository;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Objects;
 
 @Service
 public class UserSenderService {
@@ -22,5 +25,43 @@ public class UserSenderService {
         response.setTotalPoints(user.getTotalPoints());
 
         return response;
+    }
+
+    public void updateProfile(Long userId, UserUpdateRequest request) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado."));
+
+        if(!Objects.equals(request.getUsername(), user.getUsername())) {
+            boolean userSameUsername = userRepository.findByUsername(request.getUsername());
+
+            if(userSameUsername) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "username inválido");
+            }
+
+            user.setUsername(request.getUsername());
+        }
+
+        if(!Objects.equals(request.getEmail(), user.getEmail())) {
+            boolean userSameEmail = userRepository.findByEmail(request.getEmail());
+
+            if(userSameEmail) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "email inválido");
+            }
+
+            user.setEmail(request.getEmail());
+        }
+
+        if(!Objects.equals(request.getCpfCnpj(), user.getCpf())) {
+            boolean userSameCpfCnpj = userRepository.findByCpfCnpj(request.getCpfCnpj());
+
+            if(userSameCpfCnpj) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "cpf/cnpj inválido");
+            }
+
+            user.setCpf(request.getCpfCnpj());
+        }
+
+        user.setPassword(request.getPassword());
+
+        userRepository.save(user);
     }
 }

@@ -1,8 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { useAuthApi } from "../../../hooks/auth/use-auth-api.hook";
 import "./UserRegistrationForm.component.style.css";
+import { useNavigate } from "react-router-dom";
+import { useAuthApi } from "../../../hooks/authApi/use-auth-api.hook";
 import { useState } from "react";
 import { useAccountData } from "../../../context/account/account.context";
+import { AxiosError } from "axios";
+import { useToastData } from "../../../context/toast/toast.context";
 
 const REGISTRATION_DATA = {
   username: "",
@@ -14,6 +16,7 @@ const REGISTRATION_DATA = {
 export function UserRegistrationForm({ switchForm }: any) {
   const authApi = useAuthApi();
   const navigate = useNavigate();
+  const [, setToastData] = useToastData();
   const [, setAccountData] = useAccountData();
   const [registrationData, setRegistrationData] = useState(REGISTRATION_DATA);
 
@@ -31,11 +34,20 @@ export function UserRegistrationForm({ switchForm }: any) {
 
   const handleRegistration = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user = await authApi.registerUser(registrationData);
+    try {
+      const user = await authApi.registerUser(registrationData);
 
-    setAccountData(user);
+      setAccountData(user);
 
-    navigate("/your-profile");
+      navigate("/your-profile");
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: "Dados inválidos.",
+        customClass: "error",
+      });
+    }
   };
 
   return (

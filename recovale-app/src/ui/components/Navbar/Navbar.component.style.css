@@ -7,7 +7,7 @@
 .navbar {
   display: flex;
   justify-content: center;
-  background-color: #6d6b6b;
+  background-color: #004d41;
   width: 160px;
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
   height: 100%;
@@ -21,19 +21,21 @@
 
 .navbar ul li a,
 .navbar ul li.last-item {
-  background-color: aquamarine;
+  background-color: #007160;
   padding: 0.75rem;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid black;
   text-align: center;
   transition: 0.2s;
+  color: white;
 }
 
 .navbar ul li a:hover,
 .navbar ul li.last-item:hover {
-  background-color: azure;
+  background-color: #00917c;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .navbar ul li.last-item {

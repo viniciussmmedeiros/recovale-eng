@@ -1,9 +1,11 @@
+import { AxiosError } from "axios";
 import { useAccountData } from "../../../context/account/account.context";
-import { useRewardApi } from "../../../hooks/reward/use-reward-api.hook";
-import { useUserSenderApi } from "../../../hooks/userSender/use-user-sender-api.hook";
+import { useRewardApi } from "../../../hooks/rewardApi/use-reward-api.hook";
+import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { RewardCard } from "../../components";
 import "./ClaimReward.screen.style.css";
 import { useEffect, useState } from "react";
+import { useToastData } from "../../../context/toast/toast.context";
 
 interface Reward {
   id: number;
@@ -19,8 +21,9 @@ interface UserPointsData {
 }
 
 export function ClaimRewardScreen() {
+  const [, setToastData] = useToastData();
   const rewardApi = useRewardApi();
-  const userSenderApi = useUserSenderApi();
+  const userApi = useUserApi();
   const [accountData] = useAccountData();
   const [rewardsList, setRewardsList] = useState<Reward[] | null>(null);
   const [pointsFilter, setPointsFilter] = useState<string | null>(null);
@@ -31,7 +34,7 @@ export function ClaimRewardScreen() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const userPointsResponse = await userSenderApi.getPoints(accountData.id);
+      const userPointsResponse = await userApi.getPoints(accountData.id);
 
       setUserPointsData(userPointsResponse);
     };
@@ -56,9 +59,18 @@ export function ClaimRewardScreen() {
 
   const handleClaimReward = (rewardId: number, userId = accountData.id) => {
     const claimReward = async () => {
-      await rewardApi.claimReward(rewardId, userId);
+      try {
+        await rewardApi.claimReward(rewardId, userId);
 
-      setResetSearch(!resetSearch);
+        setResetSearch(!resetSearch);
+      } catch (error) {
+        const err = error as AxiosError<{ message: string }>;
+        setToastData({
+          show: true,
+          message: err.response?.data.message,
+          customClass: "error",
+        });
+      }
     };
 
     claimReward();
@@ -82,8 +94,17 @@ export function ClaimRewardScreen() {
           onChange={(e) => setPointsFilter(e.target.value)}
         />
         {pointsFilter}
-        <button onClick={() => setResetSearch(!resetSearch)}>Filtrar</button>
-        <button onClick={() => handleClearFilter()}>Limpar filtro</button>
+        <span className="buttons-wrapper">
+          <button
+            className="filter-btn"
+            onClick={() => setResetSearch(!resetSearch)}
+          >
+            Filtrar
+          </button>
+          <button className="clear-btn" onClick={() => handleClearFilter()}>
+            Limpar filtro
+          </button>
+        </span>
       </div>
       <section className="rewards-list-wrapper">
         {rewardsList && rewardsList.length > 0 ? (

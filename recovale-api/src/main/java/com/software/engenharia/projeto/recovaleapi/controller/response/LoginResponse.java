@@ -1,6 +1,5 @@
 package com.software.engenharia.projeto.recovaleapi.controller.response;
 
-import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
@@ -16,4 +15,5 @@ public class LoginResponse {
     private String username;
     private String email;
     private String cpf;
+    private String password;
 }
