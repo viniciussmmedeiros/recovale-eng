@@ -58,22 +58,34 @@ export function ClaimRewardScreen() {
   };
 
   const handleClaimReward = (rewardId: number, userId = accountData.id) => {
-    const claimReward = async () => {
-      try {
-        await rewardApi.claimReward(rewardId, userId);
+    const confirmClaim = window.confirm(
+      "Deseja realmente resgatar essa recompensa?"
+    );
 
-        setResetSearch(!resetSearch);
-      } catch (error) {
-        const err = error as AxiosError<{ message: string }>;
-        setToastData({
-          show: true,
-          message: err.response?.data.message,
-          customClass: "error",
-        });
-      }
-    };
+    if (confirmClaim) {
+      const claimReward = async () => {
+        try {
+          await rewardApi.claimReward(rewardId, userId);
 
-    claimReward();
+          setToastData({
+            show: true,
+            customClass: "success",
+            message: "Recompensa resgatada!",
+          });
+
+          setResetSearch(!resetSearch);
+        } catch (error) {
+          const err = error as AxiosError<{ message: string }>;
+          setToastData({
+            show: true,
+            message: err.response?.data.message,
+            customClass: "error",
+          });
+        }
+      };
+
+      claimReward();
+    }
   };
 
   return (
