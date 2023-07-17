@@ -55,4 +55,3 @@ _Observação: não usar qualquer pontuação, inserir apenas os dígitos. Para 
 Testar resgate de recompensas:
 Logar com um usuário que já tenha pontuação (o qwe / qwe por exemplo) e selecionar a aba de resgate de recompensas. A partir dela é possível filtrar as recompensas e resgatar, observando
 que a pontuação do usuário atualiza de acordo e o número de recompensas disponíveis diminui.
-_Observação: se o usuário não tiver pontuação suficiente para um resgate uma exceção não tratada será lançada. Será resolvida em breve._
