@@ -1,0 +1,16 @@
+.ranking-screen {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ranking-screen .ranking-data {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ranking-screen .filter-options-wrapper {
+  display: flex;
+  gap: 1rem;
+}

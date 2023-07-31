@@ -1,15 +1,21 @@
 package com.software.engenharia.projeto.recovaleapi.service;
 
 import com.software.engenharia.projeto.recovaleapi.controller.request.UserUpdateRequest;
+import com.software.engenharia.projeto.recovaleapi.controller.response.ListRankingResponse;
 import com.software.engenharia.projeto.recovaleapi.controller.response.UserSenderPointsResponse;
+import com.software.engenharia.projeto.recovaleapi.enums.UserType;
+import com.software.engenharia.projeto.recovaleapi.mapper.RankingMapper;
 import com.software.engenharia.projeto.recovaleapi.model.User;
 import com.software.engenharia.projeto.recovaleapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class UserSenderService {
@@ -63,5 +69,13 @@ public class UserSenderService {
         user.setPassword(request.getPassword());
 
         userRepository.save(user);
+    }
+
+    public List<ListRankingResponse> getRanking(String filterBy, String order){
+        return userRepository.findAll(Sort.by(Sort.Direction.fromString(order.toLowerCase()), filterBy))
+                .stream()
+                .filter(user -> UserType.SENDER.equals(user.getType()))
+                .map(RankingMapper::toResponse)
+                .collect(Collectors.toList());
     }
 }

@@ -26,4 +26,10 @@ public class Employee {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(name = "created_by")
+    private Long createdBy;
+
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 }

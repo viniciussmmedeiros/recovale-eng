@@ -44,10 +44,7 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
           {accountData && accountData.type === "ADMIN" && (
             <>
               <li>
-                <Link to="/register-admin">Cadastrar Admin</Link>
-              </li>
-              <li>
-                <Link to="/register-collector">Cadastrar Coletor</Link>
+                <Link to="/register-admin">Cadastrar Funcionário</Link>
               </li>
               <li>
                 <Link to="/registrations-management">Consultar Cadastros</Link>

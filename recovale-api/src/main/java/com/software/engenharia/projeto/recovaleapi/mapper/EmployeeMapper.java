@@ -22,6 +22,7 @@ public class EmployeeMapper {
         employee.setType(request.getType());
         employee.setUsername(request.getUsername());
         employee.setPassword(request.getPassword());
+        employee.setCreatedBy(request.getCreatedBy());
 
         return employee;
     }

@@ -3,3 +3,6 @@ export { UserRegistrationForm } from "./UserRegistrationForm/UserRegistrationFor
 export { LoginForm } from "./LoginForm/LoginForm.component";
 export { Navbar } from "./Navbar/Navbar.component";
 export { RewardCard } from "./RewardCard/RewardCard.component";
+export { RankingItem } from "./RankingItem/RankingItem.component";
+export { CreatedAccountItem } from "./CreatedAccountItem/CreatedAccountItem.component";
+export { CreatedAccountModal } from "./CreatedAccountModal/CreatedAccountModal.component";

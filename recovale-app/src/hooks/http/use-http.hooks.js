@@ -5,6 +5,7 @@ export function useHttp(baseURL, headers) {
     baseURL,
     headers,
   });
+
   const get = async (url) => {
     try {
       const response = await instance.get(url);
@@ -15,8 +16,12 @@ export function useHttp(baseURL, headers) {
     }
   };
 
-  const post = (url, data) => {
-    return instance.post(url, data);
+  const post = async (url, data) => {
+    try {
+      return await instance.post(url, data);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const put = (url, data) => {

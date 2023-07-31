@@ -15,11 +15,17 @@ export function useUserApi() {
     await httpInstance.put(`/user-sender/${userId}/update`, data);
   };
 
+  const getRanking = async (filterBy, order) => {
+    return await httpInstance.get(`/user-sender/ranking/${filterBy}/${order}`);
+  };
+
   return useMemo(
     () => ({
       getPoints,
       updateProfile,
+      getRanking,
     }),
+    //eslint-disable-next-line
     []
   );
 }

@@ -20,11 +20,17 @@ export function useAuthApi() {
     return response.data;
   };
 
+  const registerEmployee = async (employeeData) => {
+    await httpInstance.post("/auth/register/employee", employeeData);
+  };
+
   return useMemo(
     () => ({
       login,
       registerUser,
+      registerEmployee,
     }),
+    //eslint-disable-next-line
     []
   );
 }

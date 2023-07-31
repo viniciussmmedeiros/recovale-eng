@@ -1,9 +1,8 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import {
   AccountProfileScreen,
   AdminRegistrationScreen,
-  CollectorRegistrationScreen,
   LayoutScreen,
   LoginRegistrationScreen,
   ClaimRewardScreen,
@@ -35,14 +34,6 @@ function App() {
           element={
             <LayoutScreen>
               <AdminRegistrationScreen />
-            </LayoutScreen>
-          }
-        />
-        <Route
-          path="/register-collector"
-          element={
-            <LayoutScreen>
-              <CollectorRegistrationScreen />
             </LayoutScreen>
           }
         />

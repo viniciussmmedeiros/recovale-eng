@@ -65,6 +65,12 @@ public class AuthService {
     }
 
     public void registerEmployee(EmployeeRegistrationRequest request) {
+        boolean isUsernameAlreadyInUse = employeeRepository.findByUsername(request.getUsername());
+
+        if(isUsernameAlreadyInUse) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username já está em uso.");
+        }
+
         Employee employee = EmployeeMapper.toEntity(request);
 
         employeeRepository.save(employee);

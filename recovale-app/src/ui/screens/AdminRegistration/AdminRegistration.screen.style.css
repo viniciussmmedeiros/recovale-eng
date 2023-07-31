@@ -1,0 +1,52 @@
+.register-admin form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.register-admin form input:focus {
+  outline: none;
+}
+
+.register-admin form label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.register-admin form button {
+  margin-top: 0.4rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #30a43c;
+  color: #fafafa;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.register-admin form button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.register-admin .employee-type-switch {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.register-admin .employee-type-switch button {
+  background-color: transparent;
+  border: none;
+  color: #fafafa;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.register-admin .employee-type-switch .active-type {
+  opacity: 1;
+  text-decoration: underline;
+  font-weight: bold;
+}

@@ -1,9 +1,9 @@
+import "./ClaimReward.screen.style.css";
 import { AxiosError } from "axios";
 import { useAccountData } from "../../../context/account/account.context";
 import { useRewardApi } from "../../../hooks/rewardApi/use-reward-api.hook";
 import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { RewardCard } from "../../components";
-import "./ClaimReward.screen.style.css";
 import { useEffect, useState } from "react";
 import { useToastData } from "../../../context/toast/toast.context";
 

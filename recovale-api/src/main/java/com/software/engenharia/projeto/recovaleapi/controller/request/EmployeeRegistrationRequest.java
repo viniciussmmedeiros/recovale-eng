@@ -18,4 +18,6 @@ public class EmployeeRegistrationRequest {
 
     @Enumerated(EnumType.STRING)
     private EmployeeType type;
+
+    private Long createdBy;
 }
