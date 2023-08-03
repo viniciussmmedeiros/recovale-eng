@@ -7,21 +7,26 @@ Observação: Para os use cases já feitos é necessário "polir" detalhes de ba
 UC1:
 [X] Efetuar login
 [X] Usuário ou funcionário realiza login no sistema
+
 UC2:
 [X] Efetuar Cadastro
 [X] Usuário é cadastrado no sistema. (Destinatário ou Remetente)
+
 UC3:
 [X] Cadastrar funcionário
 [X] Administrador cadastra um coletor
 [X] Administrador cadastra outro admin
+
 UC6:
 [X] Consultar Ranking
 [X] Usuário ou Administrador pode ver uma tabela contendo todos os usuários, seus pontos totais e acumulados
 [X] Deve poder permitir diferentes ordenações na tabela
+
 UC7:
 [X] Consultar cadastro
 [X] Usuário ou Admin podem ver seus dados e realizar alterações
 [X] O Admin pode ver dados de todas as contas cadastradas por ele, podendo alterar elas
+
 UC8:
 [X] Editar cadastro
 [X] Itens UC7
@@ -29,6 +34,7 @@ UC8:
 UC5:
 [ ] Consultar pontos de coleta
 [ ] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
+
 UC9:
 [ ] Excluir cadastro
 [ ] Usuário pode excluir a sua conta
