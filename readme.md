@@ -1,3 +1,99 @@
+# TO DO
+
+6/23
+
+Observação: Para os use cases já feitos é necessário "polir" detalhes de backend / frontend e testar novamente
+
+UC1:
+[X] Efetuar login
+[X] Usuário ou funcionário realiza login no sistema
+UC2:
+[X] Efetuar Cadastro
+[X] Usuário é cadastrado no sistema. (Destinatário ou Remetente)
+UC3:
+[X] Cadastrar funcionário
+[X] Administrador cadastra um coletor
+[X] Administrador cadastra outro admin
+UC6:
+[X] Consultar Ranking
+[X] Usuário ou Administrador pode ver uma tabela contendo todos os usuários, seus pontos totais e acumulados
+[X] Deve poder permitir diferentes ordenações na tabela
+UC7:
+[X] Consultar cadastro
+[X] Usuário ou Admin podem ver seus dados e realizar alterações
+[X] O Admin pode ver dados de todas as contas cadastradas por ele, podendo alterar elas
+UC8:
+[X] Editar cadastro
+[X] Itens UC7
+
+UC5:
+[ ] Consultar pontos de coleta
+[ ] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
+UC9:
+[ ] Excluir cadastro
+[ ] Usuário pode excluir a sua conta
+[ ] Administrador pode excluir a conta de um funcionário
+
+UC10:
+[ ] Adicionar recompensa
+[ ] Administrador pode adicionar nova recompensa
+
+UC11:
+[ ] Gerenciar recompensas
+[ ] Administrador pode modificar recompensa
+[ ] Administrador pode excluir recompensa
+
+UC12:
+[ ] Excluir recompensa
+[ ] Item do UC11
+
+UC13:
+[ ] Resgatar recompensas
+[ ] Remetente deve poder trocar seus pontos por recompensas
+
+UC14:
+[ ] Descartar
+[ ] O remetente pode obter pontos ao descartar em um ponto de coleta
+
+UC15:
+[ ] Atualizar pontuação do remetente no descarte ou resgate de recompensa
+
+UC16:
+[ ] Solicitar novo ponto
+[ ] Remetente informa os dados do novo ponto proposto, o ponto é adicionado à uma lista de pontos solicitados
+
+UC17:
+[ ] Solicitar coleta
+[ ] Solicitar que materiais sejam recolhidos quando ponto de coleta estiver lotado (ou próximo de lotação máxima)
+
+UC18:
+[ ] Gerenciar pontos de coleta (administrador)
+[ ] Criar
+[ ] Excluir
+
+UC19:
+[ ] Criar novo ponto (administrador)
+[ ] Baseado na lista de solicitações o administrador cria um novo ponto de coleta
+
+UC20:
+[ ] Excluir ponto (administrador)
+
+UC21:
+[ ] Notificar destinatário (administrador)
+[ ] Destinatário recebe notificação sobre possibilidade de retirar material
+
+UC22:
+[ ] Validar coleta
+[ ] Rota de coleta (??)
+[ ] Estado do ponto de coleta muda para vazio, ponto de rota para coletado.
+
+UC23:
+[ ] Agendar retirada (destinatário)
+[ ] Envia notificação aos administradores
+
+UC4:
+[ ] Consultar
+
 # INSTRUÇÕES PARA EXECUTAR O PROJETO
 
 Este arquivo contém instruções para executar o projeto usando Spring, React e PostgreSQL.

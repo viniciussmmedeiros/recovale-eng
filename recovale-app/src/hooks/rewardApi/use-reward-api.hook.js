@@ -24,6 +24,7 @@ export function useRewardApi() {
       getRewardsList,
       claimReward,
     }),
+    //eslint-disable-next-line
     []
   );
 }
