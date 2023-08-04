@@ -5,6 +5,7 @@ import com.software.engenharia.projeto.recovaleapi.controller.response.ListRanki
 import com.software.engenharia.projeto.recovaleapi.controller.response.UserSenderPointsResponse;
 import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import com.software.engenharia.projeto.recovaleapi.mapper.RankingMapper;
+import com.software.engenharia.projeto.recovaleapi.model.Employee;
 import com.software.engenharia.projeto.recovaleapi.model.User;
 import com.software.engenharia.projeto.recovaleapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,5 +78,13 @@ public class UserSenderService {
                 .filter(user -> UserType.SENDER.equals(user.getType()))
                 .map(RankingMapper::toResponse)
                 .collect(Collectors.toList());
+    }
+
+    public void deleteAccount(Long accountId) {
+        User account = userRepository.findById(accountId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Conta não encontrada."));
+
+        account.setDeleted(true);
+
+        userRepository.save(account);
     }
 }

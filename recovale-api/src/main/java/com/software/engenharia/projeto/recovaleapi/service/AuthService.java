@@ -38,6 +38,9 @@ public class AuthService {
         Employee employeeEntity = getEmployee(request);
 
         if(nonNull(userEntity)) {
+            if(userEntity.isDeleted()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado.");
+            }
             return UserMapper.toResponse(userEntity);
         } else if(nonNull(employeeEntity)){
             return EmployeeMapper.toResponse(employeeEntity);

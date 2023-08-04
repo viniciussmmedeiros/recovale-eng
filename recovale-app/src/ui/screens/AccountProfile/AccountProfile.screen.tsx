@@ -5,10 +5,13 @@ import { useAdminApi } from "../../../hooks/adminApi/use-admin-api.hook";
 import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { useState } from "react";
 import { useToastData } from "../../../context/toast/toast.context";
+import { useNavigate } from "react-router-dom";
 
 export function AccountProfileScreen() {
+  const navigate = useNavigate();
   const [, setToastData] = useToastData();
-  const [editing, setEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [accountData, setAccountData] = useAccountData();
   const DEFAULT_COMMON_DATA = {
     username: accountData.username,
@@ -38,7 +41,7 @@ export function AccountProfileScreen() {
         customClass: "success",
         message: "Dados atualizados!",
       });
-      setEditing(false);
+      setIsEditing(false);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       setToastData({
@@ -62,9 +65,25 @@ export function AccountProfileScreen() {
   };
 
   const handleCancelEditing = () => {
-    setEditing(false);
+    setIsEditing(false);
     setCommonData(DEFAULT_COMMON_DATA);
     setUserData(DEFAULT_USER_DATA);
+  };
+
+  const handleAccountDeletion = async () => {
+    try {
+      await userApi.deleteAccount(accountData.id);
+      localStorage.removeItem("recovale_account_data");
+      setAccountData({});
+      navigate("/*");
+      setToastData({
+        show: true,
+        customClass: "success",
+        message: "Conta deletada com sucesso!",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -73,7 +92,7 @@ export function AccountProfileScreen() {
       <div className="account-profile-form">
         <label>
           Username:
-          {editing ? (
+          {isEditing ? (
             <input
               type="text"
               name="username"
@@ -87,7 +106,7 @@ export function AccountProfileScreen() {
 
         <label>
           {accountData.type !== "ADMIN" && "Email:"}
-          {editing && accountData.type !== "ADMIN" ? (
+          {isEditing && accountData.type !== "ADMIN" ? (
             <input
               type="text"
               name="email"
@@ -102,7 +121,7 @@ export function AccountProfileScreen() {
         <label>
           {accountData.type === "SENDER" && "CPF"}
           {accountData.type === "RECIPIENT" && "CNPJ"}
-          {editing && accountData.type !== "ADMIN" ? (
+          {isEditing && accountData.type !== "ADMIN" ? (
             <input
               type="text"
               name="cpfCnpj"
@@ -116,7 +135,7 @@ export function AccountProfileScreen() {
 
         <label>
           Senha:
-          {editing ? (
+          {isEditing ? (
             <input
               type="text"
               name="password"
@@ -129,7 +148,7 @@ export function AccountProfileScreen() {
         </label>
       </div>
 
-      {editing ? (
+      {isEditing && (
         <div className="account-profile-editing-buttons">
           <button className="cancel-btn" onClick={handleCancelEditing}>
             Cancelar
@@ -138,13 +157,30 @@ export function AccountProfileScreen() {
             Salvar
           </button>
         </div>
-      ) : (
-        <button
-          className="account-profile-edit-btn"
-          onClick={() => setEditing(true)}
-        >
-          Editar informações
-        </button>
+      )}
+      {isDeleting && (
+        <>
+          <span>Tem certeza de que deseja deletar essa conta ?</span>
+          <span>Operação irreversível</span>
+          <button onClick={() => setIsDeleting(false)}>Cancelar</button>
+          <button onClick={() => handleAccountDeletion()}>Confirmar</button>
+        </>
+      )}
+      {!isEditing && !isDeleting && (
+        <>
+          <button
+            className="account-profile-edit-btn"
+            onClick={() => setIsEditing(true)}
+          >
+            Editar informações
+          </button>
+          <button
+            className="account-profile-edit-btn"
+            onClick={() => setIsDeleting(true)}
+          >
+            Deletar conta
+          </button>
+        </>
       )}
     </section>
   );

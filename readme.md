@@ -1,8 +1,11 @@
 # TO DO
 
-6/23
+7/23
 
 Observação: Para os use cases já feitos é necessário "polir" detalhes de backend / frontend e testar novamente
+
+Melhoria 1: Modificar o cadastro para permitir conta com mesmos dados
+de uma conta já deletada.
 
 UC1:
 [X] Efetuar login
@@ -36,9 +39,9 @@ UC5:
 [ ] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
 
 UC9:
-[ ] Excluir cadastro
-[ ] Usuário pode excluir a sua conta
-[ ] Administrador pode excluir a conta de um funcionário
+[X] Excluir cadastro
+[X] Usuário pode excluir a sua conta
+[X] Administrador pode excluir a conta de um funcionário
 
 UC10:
 [ ] Adicionar recompensa

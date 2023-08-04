@@ -39,4 +39,7 @@ public class User {
 
     @Column(nullable = false)
     private int totalPoints;
+
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 }

@@ -19,11 +19,16 @@ export function useUserApi() {
     return await httpInstance.get(`/user-sender/ranking/${filterBy}/${order}`);
   };
 
+  const deleteAccount = async (accountId) => {
+    await httpInstance.put(`/user-sender/${accountId}/delete-account`);
+  };
+
   return useMemo(
     () => ({
       getPoints,
       updateProfile,
       getRanking,
+      deleteAccount,
     }),
     //eslint-disable-next-line
     []

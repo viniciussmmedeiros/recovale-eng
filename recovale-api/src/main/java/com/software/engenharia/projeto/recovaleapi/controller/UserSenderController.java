@@ -29,4 +29,9 @@ public class UserSenderController {
     public List<ListRankingResponse> getRanking(@PathVariable String filterBy, @PathVariable String order) {
         return service.getRanking(filterBy, order);
     }
+
+    @PutMapping("/{accountId}/delete-account")
+    public void deleteCreatedAccount(@PathVariable Long accountId) {
+        service.deleteAccount(accountId);
+    }
 }

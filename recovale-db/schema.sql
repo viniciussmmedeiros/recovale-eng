@@ -19,7 +19,8 @@ CREATE TABLE "user" (
     email VARCHAR(255) NOT NULL UNIQUE,
     cpf VARCHAR(14) NOT NULL UNIQUE,
     current_points INT NOT NULL DEFAULT 0,
-    total_points INT NOT NULL DEFAULT 0
+    total_points INT NOT NULL DEFAULT 0,
+    is_deleted BOOLEAN DEFAULT false
 );
 
 CREATE TABLE reward (
