@@ -17,3 +17,5 @@ INSERT INTO reward (id, title, description, points, quantity_available)
         (53, 'Ingresso cinema2', 'Ingresso para o filme xyz.', 357, 2),
         (54, 'Ingresso cinema3', 'Ingresso para o filme xyz.', 14, 4),
         (55, 'Ingresso cinema4', 'Ingresso para o filme xyz.', 99, 9);
+
+UPDATE "user" SET is_deleted = false WHERE id = 50;

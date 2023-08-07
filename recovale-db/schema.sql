@@ -29,5 +29,9 @@ CREATE TABLE reward (
     description VARCHAR(255) NOT NULL,
     points INTEGER NOT NULL,
     quantity_available INTEGER NOT NULL,
-    is_deleted BOOLEAN NOT NULL DEFAULT false
+    is_deleted BOOLEAN DEFAULT false
 );
+
+SELECT * FROM employee;
+SELECT * FROM "user";
+SELECT * FROM reward;

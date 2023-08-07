@@ -19,10 +19,25 @@ export function useRewardApi() {
     await httpInstance.post(`/reward/${rewardId}/claim/${userId}`);
   };
 
+  const registerReward = async (data) => {
+    await httpInstance.post(`/reward/register`, data);
+  };
+
+  const deleteReward = async (rewardId) => {
+    await httpInstance.put(`/reward/${rewardId}/delete`);
+  };
+
+  const updateReward = async (rewardId, rewardData) => {
+    await httpInstance.put(`/reward/${rewardId}/delete`, rewardData);
+  };
+
   return useMemo(
     () => ({
       getRewardsList,
       claimReward,
+      registerReward,
+      deleteReward,
+      updateReward,
     }),
     //eslint-disable-next-line
     []

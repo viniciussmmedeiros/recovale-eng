@@ -1,6 +1,6 @@
 # TO DO
 
-7/23
+11/23
 
 Observação: Para os use cases já feitos é necessário "polir" detalhes de backend / frontend e testar novamente
 
@@ -34,31 +34,27 @@ UC8:
 [X] Editar cadastro
 [X] Itens UC7
 
-UC5:
-[ ] Consultar pontos de coleta
-[ ] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
-
 UC9:
 [X] Excluir cadastro
 [X] Usuário pode excluir a sua conta
 [X] Administrador pode excluir a conta de um funcionário
 
+UC13:
+[X] Resgatar recompensas
+[X] Remetente deve poder trocar seus pontos por recompensas
+
 UC10:
-[ ] Adicionar recompensa
-[ ] Administrador pode adicionar nova recompensa
+[X] Adicionar recompensa
+[X] Administrador pode adicionar nova recompensa
 
 UC11:
-[ ] Gerenciar recompensas
-[ ] Administrador pode modificar recompensa
-[ ] Administrador pode excluir recompensa
+[X] Gerenciar recompensas
+[X] Administrador pode modificar recompensa
+[X] Administrador pode excluir recompensa
 
 UC12:
-[ ] Excluir recompensa
-[ ] Item do UC11
-
-UC13:
-[ ] Resgatar recompensas
-[ ] Remetente deve poder trocar seus pontos por recompensas
+[X] Excluir recompensa
+[X] Item do UC11
 
 UC14:
 [ ] Descartar
@@ -66,6 +62,10 @@ UC14:
 
 UC15:
 [ ] Atualizar pontuação do remetente no descarte ou resgate de recompensa
+
+UC5:
+[ ] Consultar pontos de coleta
+[ ] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
 
 UC16:
 [ ] Solicitar novo ponto

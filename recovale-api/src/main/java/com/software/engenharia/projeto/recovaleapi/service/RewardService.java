@@ -1,5 +1,7 @@
 package com.software.engenharia.projeto.recovaleapi.service;
 
+import com.software.engenharia.projeto.recovaleapi.controller.request.RewardRegistrationRequest;
+import com.software.engenharia.projeto.recovaleapi.controller.request.RewardUpdateRequest;
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListRewardsResponse;
 import com.software.engenharia.projeto.recovaleapi.mapper.RewardMapper;
 import com.software.engenharia.projeto.recovaleapi.model.Reward;
@@ -53,5 +55,30 @@ public class RewardService {
 
         handleUserService.saveUser(user);
         rewardRepository.save(reward);
+    }
+
+    public void register(RewardRegistrationRequest request) {
+        Reward reward = RewardMapper.toEntity(request);
+
+        rewardRepository.save(reward);
+    }
+
+    public void update(Long rewardId, RewardUpdateRequest request) {
+        Reward reward = rewardRepository.findById(rewardId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Recompensa não encontrada."));
+
+        reward.setTitle(request.getTitle());
+        reward.setDescription(request.getDescription());
+        reward.setPoints(request.getPoints());
+        reward.setQuantityAvailable(request.getQuantityAvailable());
+
+        rewardRepository.save(reward);
+    }
+
+    public void delete(Long rewardId) {
+        Reward entity = rewardRepository.findById(rewardId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Recompensa não encontrada."));
+
+        entity.setDeleted(true);
+
+        rewardRepository.save(entity);
     }
 }

@@ -32,6 +32,6 @@ public class Reward {
     @Column(nullable = false)
     private int quantityAvailable;
 
-    @Column(nullable = false)
+    @Column(name = "is_deleted")
     private boolean isDeleted;
 }
