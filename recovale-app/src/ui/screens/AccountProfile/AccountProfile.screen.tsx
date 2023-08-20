@@ -6,6 +6,7 @@ import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { useState } from "react";
 import { useToastData } from "../../../context/toast/toast.context";
 import { useNavigate } from "react-router-dom";
+import { Map } from "../../components";
 
 export function AccountProfileScreen() {
   const navigate = useNavigate();

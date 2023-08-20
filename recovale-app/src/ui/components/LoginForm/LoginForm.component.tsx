@@ -5,7 +5,7 @@ import { useAccountData } from "../../../context/account/account.context";
 import { useNavigate } from "react-router-dom";
 import { useToastData } from "../../../context/toast/toast.context";
 import { AxiosError } from "axios";
-
+import { Map } from "../Map/Map.component";
 const LOGIN_DATA = {
   username: "",
   password: "",

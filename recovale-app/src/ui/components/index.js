@@ -7,3 +7,7 @@ export { RankingItem } from "./RankingItem/RankingItem.component";
 export { CreatedAccountItem } from "./CreatedAccountItem/CreatedAccountItem.component";
 export { CreatedAccountModal } from "./CreatedAccountModal/CreatedAccountModal.component";
 export { RewardModal } from "./RewardModal/RewardModal.component";
+export { CollectionPointCard } from "./CollectionPointCard/CollectionPointCard.component";
+export { RequestCard } from "./RequestCard/RequestCard.component";
+export { Map } from "./Map/Map.component";
+export { CollectionPointRequestModal } from "./CollectionPointRequestModal/CollectionPointRequestModal.component";

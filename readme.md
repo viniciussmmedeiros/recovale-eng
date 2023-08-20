@@ -1,6 +1,6 @@
 # TO DO
 
-11/23
+16/23
 
 Observação: Para os use cases já feitos é necessário "polir" detalhes de backend / frontend e testar novamente
 
@@ -56,6 +56,26 @@ UC12:
 [X] Excluir recompensa
 [X] Item do UC11
 
+UC5:
+[X] Consultar pontos de coleta
+[X] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
+
+UC16:
+[X] Solicitar novo ponto
+[X] Remetente informa os dados do novo ponto proposto, o ponto é adicionado à uma lista de pontos solicitados
+
+UC18:
+[X] Gerenciar pontos de coleta (administrador)
+[X] Criar
+[X] Excluir
+
+UC19:
+[X] Criar novo ponto (administrador)
+[X] Baseado na lista de solicitações o administrador cria um novo ponto de coleta
+
+UC20:
+[X] Excluir ponto (administrador)
+
 UC14:
 [ ] Descartar
 [ ] O remetente pode obter pontos ao descartar em um ponto de coleta
@@ -63,29 +83,9 @@ UC14:
 UC15:
 [ ] Atualizar pontuação do remetente no descarte ou resgate de recompensa
 
-UC5:
-[ ] Consultar pontos de coleta
-[ ] Usuário ou Administrador pode ver uma "tabela" dos pontos de coleta
-
-UC16:
-[ ] Solicitar novo ponto
-[ ] Remetente informa os dados do novo ponto proposto, o ponto é adicionado à uma lista de pontos solicitados
-
 UC17:
 [ ] Solicitar coleta
 [ ] Solicitar que materiais sejam recolhidos quando ponto de coleta estiver lotado (ou próximo de lotação máxima)
-
-UC18:
-[ ] Gerenciar pontos de coleta (administrador)
-[ ] Criar
-[ ] Excluir
-
-UC19:
-[ ] Criar novo ponto (administrador)
-[ ] Baseado na lista de solicitações o administrador cria um novo ponto de coleta
-
-UC20:
-[ ] Excluir ponto (administrador)
 
 UC21:
 [ ] Notificar destinatário (administrador)
