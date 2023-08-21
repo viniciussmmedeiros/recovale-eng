@@ -21,15 +21,8 @@ export function CollectionPointRequestModal({ handleModal, senderId }: any) {
   const [requestData, setRequestData] = useState<any>(REQUEST_DATA);
   const [registerData, setRegisterData] = useState(REGISTER_DATA);
   const collectionPointApi = useCollectionPointApi();
-  console.log("a", senderId, requestData);
 
   const handleRequest = async () => {
-    // const requestDate = new Date();
-    // setRequestData((previousData: any) => ({
-    //   ...previousData,
-    //   requestDate: requestDate,
-    // }));
-    console.log("uau, aqui está::", requestData);
     await collectionPointApi.makeRequest(requestData);
   };
 
@@ -38,7 +31,6 @@ export function CollectionPointRequestModal({ handleModal, senderId }: any) {
   };
 
   const handleSetLocation = (location: any) => {
-    console.log("are we here ?", location);
     setRequestData((previousData: any) => ({
       ...previousData,
       latitude: location.lat,

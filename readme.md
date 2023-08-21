@@ -1,6 +1,6 @@
 # TO DO
 
-16/23
+21/23
 
 Observação: Para os use cases já feitos é necessário "polir" detalhes de backend / frontend e testar novamente
 
@@ -76,32 +76,35 @@ UC19:
 UC20:
 [X] Excluir ponto (administrador)
 
+UC4:
+[X] Consultar
+
+UC21:
+[X] Notificar destinatário (administrador)
+[X] Destinatário recebe notificação sobre possibilidade de retirar material
+
+UC17:
+[X] Solicitar coleta
+[X] Solicitar que materiais sejam recolhidos quando ponto de coleta estiver lotado (ou próximo de lotação máxima)
+
+UC23:
+[X] Agendar retirada (destinatário)
+[X] Envia notificação aos administradores
+
+UC22:
+[X] Validar coleta
+[X] Estado do ponto de coleta muda para vazio, ponto de coleta para coletado.
+
+################################################################################
+################################################################################
+################################################################################
+
 UC14:
 [ ] Descartar
 [ ] O remetente pode obter pontos ao descartar em um ponto de coleta
 
 UC15:
 [ ] Atualizar pontuação do remetente no descarte ou resgate de recompensa
-
-UC17:
-[ ] Solicitar coleta
-[ ] Solicitar que materiais sejam recolhidos quando ponto de coleta estiver lotado (ou próximo de lotação máxima)
-
-UC21:
-[ ] Notificar destinatário (administrador)
-[ ] Destinatário recebe notificação sobre possibilidade de retirar material
-
-UC22:
-[ ] Validar coleta
-[ ] Rota de coleta (??)
-[ ] Estado do ponto de coleta muda para vazio, ponto de rota para coletado.
-
-UC23:
-[ ] Agendar retirada (destinatário)
-[ ] Envia notificação aos administradores
-
-UC4:
-[ ] Consultar
 
 # INSTRUÇÕES PARA EXECUTAR O PROJETO
 

@@ -33,6 +33,47 @@ export function useCollectionPointApi() {
     await httpInstance.put(`/collection-point/delete/${id}`);
   };
 
+  const requestCollection = async (pointId, accountId) => {
+    await httpInstance.post(
+      `/collection-point/${pointId}/request-collection/${accountId}`
+    );
+  };
+
+  const getWasteCollectionRequests = async () => {
+    return await httpInstance.get(
+      "/collection-point/list-waste-collection-requests"
+    );
+  };
+
+  const sendNotification = async (selectedRecipients, requestId) => {
+    await httpInstance.post(
+      `/collection-point/request/send-notification/${requestId}`,
+      selectedRecipients
+    );
+  };
+
+  const getNotifications = async (accountId) => {
+    return await httpInstance.get(
+      `/collection-point/request/list-notifications/${accountId}`
+    );
+  };
+
+  const scheduleCollection = async (notificationId, recipientId, requestId) => {
+    return await httpInstance.put(
+      `/collection-point/request/schedule-collection/${notificationId}/${recipientId}/${requestId}`
+    );
+  };
+
+  const getPendingCollections = async (accountId) => {
+    return await httpInstance.get(`/collection-point/list-pending-collections`);
+  };
+
+  const validateCollection = async (requestId, collectionPointId) => {
+    return await httpInstance.put(
+      `/collection-point/${collectionPointId}/validate-collection/${requestId}`
+    );
+  };
+
   return useMemo(
     () => ({
       getCollectionPoints,
@@ -42,6 +83,13 @@ export function useCollectionPointApi() {
       approveRequest,
       refuseRequest,
       deletePoint,
+      requestCollection,
+      getWasteCollectionRequests,
+      sendNotification,
+      getNotifications,
+      scheduleCollection,
+      getPendingCollections,
+      validateCollection,
     }),
     []
   );

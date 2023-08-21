@@ -14,7 +14,6 @@ export function RankingScreen() {
   useEffect(() => {
     const fetchRankingData = async () => {
       try {
-        console.log(filterOptions);
         const response = await userApi.getRanking(
           filterOptions.filterBy,
           filterOptions.order
@@ -22,7 +21,7 @@ export function RankingScreen() {
 
         setRankingData(response);
       } catch (error) {
-        console.log("Erro interno do servidor.");
+        console.log(error);
       }
     };
 

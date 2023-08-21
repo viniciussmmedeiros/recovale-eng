@@ -13,6 +13,10 @@ export function CollectionPointCard({ data }: any) {
     await collectionPoint.deletePoint(data.id);
   };
 
+  const handleRequestCollection = async () => {
+    await collectionPoint.requestCollection(data.id, accountData.id);
+  };
+
   return (
     <>
       <div onClick={() => setIsCardOpen((previousValue) => !previousValue)}>
@@ -28,6 +32,11 @@ export function CollectionPointCard({ data }: any) {
           />
           {accountData.type === "ADMIN" && (
             <button onClick={() => handleDeletePoint()}>Excluir ponto</button>
+          )}
+          {accountData.type === "SENDER" && (
+            <button onClick={() => handleRequestCollection()}>
+              Solicitar coleta
+            </button>
           )}
         </div>
       )}

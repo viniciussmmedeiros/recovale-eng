@@ -1,6 +1,7 @@
 package com.software.engenharia.projeto.recovaleapi.mapper;
 
 import com.software.engenharia.projeto.recovaleapi.controller.request.UserRegistrationRequest;
+import com.software.engenharia.projeto.recovaleapi.controller.response.ListRecipientResponse;
 import com.software.engenharia.projeto.recovaleapi.controller.response.LoginResponse;
 import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import com.software.engenharia.projeto.recovaleapi.model.User;
@@ -33,5 +34,14 @@ public class UserMapper {
         user.setPassword(request.getPassword());
 
         return user;
+    }
+
+    public static ListRecipientResponse toResponseRecipient(User user) {
+        ListRecipientResponse response = new ListRecipientResponse();
+
+        response.setId(user.getId());
+        response.setUsername(user.getUsername());
+
+        return response;
     }
 }

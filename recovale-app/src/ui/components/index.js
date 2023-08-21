@@ -11,3 +11,5 @@ export { CollectionPointCard } from "./CollectionPointCard/CollectionPointCard.c
 export { RequestCard } from "./RequestCard/RequestCard.component";
 export { Map } from "./Map/Map.component";
 export { CollectionPointRequestModal } from "./CollectionPointRequestModal/CollectionPointRequestModal.component";
+export { WasteCollectionRequestCard } from "./WasteCollectionRequestCard/WasteCollectionRequestCard.component";
+export { NotificationCard } from "./NotificationCard/NotificationCard.component";

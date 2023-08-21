@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export function CreatedAccountItem({ data }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(data);
 
   return (
     <>

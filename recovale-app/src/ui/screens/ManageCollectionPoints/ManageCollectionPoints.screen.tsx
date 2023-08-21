@@ -17,8 +17,6 @@ export function ManageCollectionPointsScreen() {
     any[] | null
   >();
   const [requestsList, setRequestsList] = useState<any[] | null>();
-  console.log(requestsList);
-  console.log("active:", collectionPointsList);
   useEffect(() => {
     const fetchData = async () => {
       try {

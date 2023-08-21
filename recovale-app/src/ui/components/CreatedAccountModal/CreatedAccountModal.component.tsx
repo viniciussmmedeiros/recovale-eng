@@ -11,7 +11,6 @@ export function CreatedAccountModal({ data, handleModal }: any) {
   const handleSetAccountData = (e: any) => {
     const { name, value } = e.target;
     setAccountData((previousData: any) => ({ ...previousData, [name]: value }));
-    console.log(accountData);
   };
 
   const handleAccountUpdate = async () => {

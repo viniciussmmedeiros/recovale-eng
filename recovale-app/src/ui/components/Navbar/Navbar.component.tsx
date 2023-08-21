@@ -57,6 +57,11 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
                   Gerenciar Pontos de Coleta
                 </Link>
               </li>
+              <li>
+                <Link to="/waste-collection-requests">
+                  Solicitações de Coleta
+                </Link>
+              </li>
             </>
           )}
           {accountData && accountData.type === "SENDER" && (
@@ -70,6 +75,13 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
             <>
               <li>
                 <Link to="/schedule-pickup">Agendar Retirada</Link>
+              </li>
+            </>
+          )}
+          {accountData && accountData.type === "COLLECTOR" && (
+            <>
+              <li>
+                <Link to="/validate-collection">Validar Coletas Pendentes</Link>
               </li>
             </>
           )}

@@ -7,3 +7,6 @@ export { ManageCollectionPointsScreen } from "./ManageCollectionPoints/ManageCol
 export { ManageRewardsScreen } from "./ManageRewards/ManageRewards.screen";
 export { SearchCollectionPointsScreen } from "./SearchCollectionPoints/SearchCollectionPoints.screen";
 export { RankingScreen } from "./Ranking/Ranking.screen";
+export { ManageWasteCollectionRequestsScreen } from "./ManageWasteCollectionRequests/ManageWasteCollectionRequests.screen";
+export { PickupNotificationsScreen } from "./PickupNotifications/PickupNotifications.screen";
+export { ValidateCollectionScreen } from "./ValidateCollectionScreen/ValidateCollectionScreen.screen";

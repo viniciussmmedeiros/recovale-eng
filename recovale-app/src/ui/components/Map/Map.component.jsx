@@ -11,11 +11,7 @@ const center = {
 function DraggableMarker({ setLocation, location }) {
   const [draggable, setDraggable] = useState(false);
   const [position, setPosition] = useState(location ? location : center);
-  // useEffect(() => {
-  //   setLocation(position);
-  // }, [position, setLocation]);
 
-  console.log("position", position);
   const markerRef = useRef(null);
   const eventHandlers = useMemo(
     () => ({
@@ -23,7 +19,6 @@ function DraggableMarker({ setLocation, location }) {
         const marker = markerRef.current;
         if (marker != null) {
           setPosition(marker.getLatLng());
-          console.log("setting stuff");
           setLocation(marker.getLatLng());
         }
       },
@@ -56,7 +51,7 @@ function DraggableMarker({ setLocation, location }) {
 
 export function Map({ setLocation, location }) {
   const position = [51.505, -0.09];
-  console.log("la location", location);
+
   return (
     <MapContainer
       center={location ? [location.lat, location.lng] : position}

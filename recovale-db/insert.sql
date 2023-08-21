@@ -2,7 +2,9 @@ INSERT INTO "user" (id, "type", "username", "password", email, cpf, current_poin
     VALUES 
         (50, 'SENDER', 'qwe', 'qwe', 'qwe@email.com', '00011122244', 850, 850),
         (51, 'SENDER', 'qwe2', 'qwe2', 'qwe2@email.com', '00011122255', 1, 200),
-        (52, 'RECIPIENT', 'qwe3', 'qwe3', 'qwe3@email.com', '00001111222266', 1, 200);
+        (52, 'RECIPIENT', 'qwe3', 'qwe3', 'qwe3@email.com', '00001111222266', 0, 0),
+        (53, 'RECIPIENT', 'qwe5', 'qwe5', 'qwe5@email.com', '00001111222267', 0, 0),
+        (54, 'RECIPIENT', 'qwe3', 'qwe3', 'qwe6@email.com', '00001111222268', 0, 0);
 
 INSERT INTO employee (id, "type", username, "password")
     VALUES 

@@ -23,12 +23,17 @@ export function useUserApi() {
     await httpInstance.put(`/user-sender/${accountId}/delete-account`);
   };
 
+  const getRecipients = async () => {
+    return await httpInstance.get(`/user-sender/list-recipients`);
+  };
+
   return useMemo(
     () => ({
       getPoints,
       updateProfile,
       getRanking,
       deleteAccount,
+      getRecipients,
     }),
     //eslint-disable-next-line
     []

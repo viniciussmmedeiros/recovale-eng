@@ -5,14 +5,24 @@ import com.software.engenharia.projeto.recovaleapi.controller.request.Collection
 import com.software.engenharia.projeto.recovaleapi.controller.request.CollectionPointRequest;
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListCollectionPointRequestResponse;
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListCollectionPointResponse;
+import com.software.engenharia.projeto.recovaleapi.controller.response.ListNotificationResponse;
+import com.software.engenharia.projeto.recovaleapi.controller.response.ListWasteCollectionRequestResponse;
 import com.software.engenharia.projeto.recovaleapi.mapper.CollectionPointMapper;
+import com.software.engenharia.projeto.recovaleapi.mapper.WasteCollectionRequestMapper;
+import com.software.engenharia.projeto.recovaleapi.mapper.WasteCollectionRequestRecipientMapper;
 import com.software.engenharia.projeto.recovaleapi.model.CollectionPoint;
+import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequest;
+import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequestRecipient;
 import com.software.engenharia.projeto.recovaleapi.repository.CollectionPointRepository;
+import com.software.engenharia.projeto.recovaleapi.repository.WasteCollectionRequestRecipientRepository;
+import com.software.engenharia.projeto.recovaleapi.repository.WasteCollectionRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +30,12 @@ import java.util.stream.Collectors;
 public class CollectionPointService {
     @Autowired
     private CollectionPointRepository collectionPointRepository;
+
+    @Autowired
+    private WasteCollectionRequestRepository wasteCollectionRequestRepository;
+
+    @Autowired
+    private WasteCollectionRequestRecipientRepository wasteCollectionRequestRecipientRepository;
 
     public List<ListCollectionPointResponse> listCollectionPoints() {
         return collectionPointRepository.findAll()
@@ -75,5 +91,71 @@ public class CollectionPointService {
         entity.setDeleted(true);
 
         collectionPointRepository.save(entity);
+    }
+
+    public void requestWasteCollection(Long pointId, Long accountId) {
+        WasteCollectionRequest entity = WasteCollectionRequestMapper.toEntity(pointId, accountId);
+
+        wasteCollectionRequestRepository.save(entity);
+    }
+
+    public List<ListWasteCollectionRequestResponse> listWasteCollectionRequests() {
+        return wasteCollectionRequestRepository.findAll()
+                .stream()
+                //.filter(collectionPoint -> collectionPoint.isApproved() || (collectionPoint.getSenderId() == null && !collectionPoint.isDeleted()))
+                //.filter(collectionPoint -> collectionPoint.isApproved() || (!collectionPoint.isDeleted()))
+                .map(x -> WasteCollectionRequestMapper.toResponse(x))
+                .collect(Collectors.toList());
+    }
+
+    public void sendNotification(Long requestId, List<Long> recipientsIds) {
+        List<WasteCollectionRequestRecipient> recipients = new ArrayList<>();
+
+        for (Long recipientId : recipientsIds) {
+            WasteCollectionRequestRecipient recipient = new WasteCollectionRequestRecipient();
+            recipient.setRequestId(requestId);
+            recipient.setRecipientId(recipientId);
+            recipients.add(recipient);
+        }
+
+        wasteCollectionRequestRecipientRepository.saveAll(recipients);
+    }
+
+    public List<ListNotificationResponse> listNotifications(Long accountId) {
+        return wasteCollectionRequestRecipientRepository.findAllByRecipientId(accountId)
+                .stream()
+                .map(x -> WasteCollectionRequestRecipientMapper.toResponse(x))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void scheduleCollection(Long notificationId, Long recipientId, Long requestId) {
+        WasteCollectionRequest collectionRequest = wasteCollectionRequestRepository.findByRequestId(requestId);
+
+        collectionRequest.setStatus("SCHEDULED");
+
+        wasteCollectionRequestRepository.save(collectionRequest);
+
+        wasteCollectionRequestRecipientRepository.deleteNotifications(requestId);
+    }
+
+    public List<ListWasteCollectionRequestResponse> listPendingCollections() {
+        return wasteCollectionRequestRepository.findAllScheduled()
+                .stream()
+                .map(x -> WasteCollectionRequestMapper.toResponse(x))
+                .collect(Collectors.toList());
+    }
+
+    public void validateCollection(Long collectionPointId, Long requestId) {
+        WasteCollectionRequest collectionRequest = wasteCollectionRequestRepository.findByRequestId(requestId);
+
+        collectionRequest.setStatus("COLLECTED");
+
+        CollectionPoint collectionPoint = collectionPointRepository.findById(collectionPointId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ponto de coleta informado não existe."));
+
+        collectionPoint.setCurrentCapacity(0);
+
+        wasteCollectionRequestRepository.save(collectionRequest);
+        collectionPointRepository.save(collectionPoint);
     }
 }

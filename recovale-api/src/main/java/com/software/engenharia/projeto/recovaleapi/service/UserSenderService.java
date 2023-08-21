@@ -2,10 +2,11 @@ package com.software.engenharia.projeto.recovaleapi.service;
 
 import com.software.engenharia.projeto.recovaleapi.controller.request.UserUpdateRequest;
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListRankingResponse;
+import com.software.engenharia.projeto.recovaleapi.controller.response.ListRecipientResponse;
 import com.software.engenharia.projeto.recovaleapi.controller.response.UserSenderPointsResponse;
 import com.software.engenharia.projeto.recovaleapi.enums.UserType;
 import com.software.engenharia.projeto.recovaleapi.mapper.RankingMapper;
-import com.software.engenharia.projeto.recovaleapi.model.Employee;
+import com.software.engenharia.projeto.recovaleapi.mapper.UserMapper;
 import com.software.engenharia.projeto.recovaleapi.model.User;
 import com.software.engenharia.projeto.recovaleapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,12 @@ public class UserSenderService {
         account.setDeleted(true);
 
         userRepository.save(account);
+    }
+
+    public List<ListRecipientResponse> getRecipients() {
+        return userRepository.findAllByType(UserType.RECIPIENT.toString())
+                .stream()
+                .map(x -> UserMapper.toResponseRecipient(x))
+                .collect(Collectors.toList());
     }
 }

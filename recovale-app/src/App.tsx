@@ -10,9 +10,11 @@ import {
   ManageRewardsScreen,
   SearchCollectionPointsScreen,
   RankingScreen,
+  ManageWasteCollectionRequestsScreen,
+  ValidateCollectionScreen,
 } from "./ui/screens";
 import { ManageRegistrationsScreen } from "./ui/screens/ManageRegistrations/ManageRegistrations.screen";
-import { SchedulePickupScreen } from "./ui/screens/SchedulePickup/SchedulePickup.screen";
+import { PickupNotificationsScreen } from "./ui/screens/PickupNotifications/PickupNotifications.screen";
 import { Toast } from "./ui/components/Toast/Toast.component";
 
 function App() {
@@ -89,7 +91,23 @@ function App() {
           path="/schedule-pickup"
           element={
             <LayoutScreen>
-              <SchedulePickupScreen />
+              <PickupNotificationsScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/waste-collection-requests"
+          element={
+            <LayoutScreen>
+              <ManageWasteCollectionRequestsScreen />
+            </LayoutScreen>
+          }
+        />
+        <Route
+          path="/validate-collection"
+          element={
+            <LayoutScreen>
+              <ValidateCollectionScreen />
             </LayoutScreen>
           }
         />

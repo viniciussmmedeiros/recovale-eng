@@ -28,11 +28,9 @@ export function RequestCard({ data }: any) {
     e.preventDefault();
 
     await collectionPointApi.approveRequest(collectionPointData);
-    // console.log(collectionPointData);
   };
 
   const handleRefusal = async () => {
-    // console.log("estamos recusando");
     await collectionPointApi.refuseRequest(collectionPointData.id);
   };
 

@@ -2,6 +2,7 @@ package com.software.engenharia.projeto.recovaleapi.controller;
 
 import com.software.engenharia.projeto.recovaleapi.controller.request.UserUpdateRequest;
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListRankingResponse;
+import com.software.engenharia.projeto.recovaleapi.controller.response.ListRecipientResponse;
 import com.software.engenharia.projeto.recovaleapi.controller.response.UserSenderPointsResponse;
 import com.software.engenharia.projeto.recovaleapi.service.UserSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,10 @@ public class UserSenderController {
     @PutMapping("/{accountId}/delete-account")
     public void deleteCreatedAccount(@PathVariable Long accountId) {
         service.deleteAccount(accountId);
+    }
+
+    @GetMapping("/list-recipients")
+    public List<ListRecipientResponse> getRecipients() {
+        return service.getRecipients();
     }
 }
