@@ -1,11 +1,14 @@
 INSERT INTO "user" (id, "type", "username", "password", email, cpf, current_points, total_points)
     VALUES 
-        (50, 'SENDER', 'qwe', 'qwe', 'qwe@email.com', '00011122244', 850, 850),
-        (51, 'SENDER', 'qwe2', 'qwe2', 'qwe2@email.com', '00011122255', 1, 200),
-        (52, 'RECIPIENT', 'qwe3', 'qwe3', 'qwe3@email.com', '00001111222266', 0, 0),
-        (53, 'RECIPIENT', 'qwe6', 'qwe6', 'qwe7@email.com', '00001111222267', 0, 0),
-        (54, 'RECIPIENT', 'qwe3', 'qwe3', 'qwe6@email.com', '00001111222268', 0, 0),
-        (55, 'SENDER', 'qweeeeeeeeeeeeeeeeeeee', 'qweeeeeeeeeeeeeeeeeee', 'qweeeeeee@email.com', '00091122255', 1, 200);
+        (50, 'SENDER', 'João Silva', 'batata25', 'Silva25@email.com', '00011122244', 850, 850),
+        (51, 'SENDER', 'Roberto Gonçalves', '123456', 'Robertinho22@email.com', '00011122255', 1, 200),
+        (52, 'RECIPIENT', 'Juliana Souza', 'senha123', 'JuSouza@email.com', '00001111222266', 0, 0),
+        (53, 'RECIPIENT', 'Hildefonso Rodrigues', '000000', 'qwe7@email.com', '00001111222267', 0, 0),
+        (54, 'RECIPIENT', 'Pedro', '147852369', 'Pedro@email.com', '00001111222268', 0, 0),
+        (55, 'SENDER', 'Alberto', '192837465', 'Beto@email.com', '00091122255', 1, 200),
+	(56, 'SENDER', 'Lipe', 'Lipe', 'Lipe@email.com', '00011122277', 990, 999),
+	(57, 'SENDER', 'Vinicius', 'Vinicius', 'Vinicius@email.com', '00011122288', 990, 999),
+	(58, 'SENDER', 'Andres', 'Andres', 'Andres@email.com', '00011122299', 990, 999);
 
 INSERT INTO employee (id, "type", username, "password")
     VALUES 
@@ -14,9 +17,9 @@ INSERT INTO employee (id, "type", username, "password")
 
 INSERT INTO reward (id, title, description, points, quantity_available)
     VALUES 
-        (50, 'Ingresso show', 'Ingresso para o show da banda xyz.', 280, 5),
-        (51, 'Bateria usada', 'Uma bela bateria usada.', 1, 999),
-        (52, 'Ingresso cinema', 'Ingresso para o filme xyz.', 130, 999),
-        (53, 'Ingresso cinema2', 'Ingresso para o filme xyz.', 357, 2),
-        (54, 'Ingresso cinema3', 'Ingresso para o filme xyz.', 14, 4),
-        (55, 'Ingresso cinema4', 'Ingresso para o filme xyz.', 99, 9);
+        (50, 'Ingresso Show do Coldplay', 'Ingresso para o show da banda Coldplay na Arena.', 580, 5),
+	(51, 'Ingresso Show do U2', 'Ingresso para o show da banda U2 no Beira-Rio.', 780, 5),
+	(52, 'Garrafinha De Água', 'Uma Garrafinha De Água Personalizada.', 280, 5),
+        (53, 'Bateria usada', 'Uma bela bateria usada.', 1, 999),
+        (54, 'Ingresso Cinema - Oppenheimer', 'Ingresso para o filme Oppenheimer.', 130, 999),
+        (55, 'Ingresso Cinema - Barbie', 'Ingresso para o filme Barbie.', 357, 2),
