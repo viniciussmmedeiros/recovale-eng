@@ -111,7 +111,7 @@ public class CollectionPointService {
     public List<ListWasteCollectionRequestResponse> listWasteCollectionRequests() {
         List<WasteCollectionRequest> requests = wasteCollectionRequestRepository.findAll()
                 .stream()
-                .filter(request -> !request.getStatus().equals("DONE"))
+                .filter(request -> request.getStatus().equals("REQUESTED"))
                 .collect(Collectors.toList());
 
         List<ListWasteCollectionRequestResponse> responseList = new ArrayList<>();
@@ -252,5 +252,23 @@ public class CollectionPointService {
 
         wasteCollectionRequestRepository.save(collectionRequest);
         collectionPointRepository.save(collectionPoint);
+    }
+
+    public void discard(Long collectionPointId, Long userId, int quantity) {
+        CollectionPoint collectionPoint = collectionPointRepository.findById(collectionPointId).orElse(null);
+        User user = userRepository.findById(userId).orElse(null);
+
+        if(user != null && collectionPoint != null) {
+            if(collectionPoint.getCurrentCapacity() + quantity > collectionPoint.getCapacity()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não há espaço suficiente no ponto de coleta.");
+            }
+            collectionPoint.setCurrentCapacity(collectionPoint.getCurrentCapacity() + quantity);
+            user.setCurrentPoints(user.getCurrentPoints() + quantity);
+
+            collectionPointRepository.save(collectionPoint);
+            userRepository.save(user);
+        }else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ocorre um erro");
+        }
     }
 }

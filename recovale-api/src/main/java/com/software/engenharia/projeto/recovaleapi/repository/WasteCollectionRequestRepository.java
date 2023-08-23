@@ -14,6 +14,6 @@ public interface WasteCollectionRequestRepository extends JpaRepository<WasteCol
     @Query(value="SELECT * FROM waste_collection_request WHERE status = 'SCHEDULED'", nativeQuery = true)
     List<WasteCollectionRequest> findAllScheduled();
 
-    @Query(value="SELECT * FROM waste_collection_request WHERE collection_point_id = ?1 AND sender_id = ?2 AND status != 'DONE'", nativeQuery = true)
+    @Query(value="SELECT * FROM waste_collection_request WHERE collection_point_id = ?1 AND sender_id = ?2 AND status != 'DONE' AND status != 'COLLECTED'", nativeQuery = true)
     WasteCollectionRequest findExistingRequest(Long pointId, Long accountId);
 }

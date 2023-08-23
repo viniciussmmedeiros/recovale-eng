@@ -40,7 +40,6 @@ export function CollectionPointRequestModal({
         message: "Solicitação de ponto de coleta enviada com sucesso!",
         customClass: "success",
       });
-      // setRefreshList((previousValue: boolean) => !previousValue);
       handleModal(false);
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;

@@ -74,6 +74,12 @@ export function useCollectionPointApi() {
     );
   };
 
+  const discard = async (collectionPointId, userId, quantity) => {
+    return await httpInstance.put(
+      `/collection-point/${collectionPointId}/discard/${userId}/${quantity}`
+    );
+  };
+
   return useMemo(
     () => ({
       getCollectionPoints,
@@ -90,6 +96,7 @@ export function useCollectionPointApi() {
       scheduleCollection,
       getPendingCollections,
       validateCollection,
+      discard,
     }),
     //eslint-disable-next-line
     []

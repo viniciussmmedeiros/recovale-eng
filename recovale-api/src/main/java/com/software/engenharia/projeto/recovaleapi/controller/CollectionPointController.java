@@ -88,4 +88,9 @@ public class CollectionPointController {
     public void validateCollection(@PathVariable Long collectionPointId, @PathVariable Long requestId) {
         service.validateCollection(collectionPointId, requestId);
     }
+
+    @PutMapping("/{collectionPointId}/discard/{userId}/{quantity}")
+    public void discard(@PathVariable Long collectionPointId, @PathVariable Long userId, @PathVariable int quantity) {
+        service.discard(collectionPointId, userId, quantity);
+    }
 }

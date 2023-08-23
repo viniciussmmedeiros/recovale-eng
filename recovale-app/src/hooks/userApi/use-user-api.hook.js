@@ -6,25 +6,25 @@ export function useUserApi() {
   const httpInstance = useHttp(BASE_API_URL);
 
   const getPoints = async (userId) => {
-    const response = await httpInstance.get(`/user-sender/${userId}/points`);
+    const response = await httpInstance.get(`/user/${userId}/points`);
 
     return response;
   };
 
   const updateProfile = async (userId, data) => {
-    await httpInstance.put(`/user-sender/${userId}/update`, data);
+    await httpInstance.put(`/user/${userId}/update`, data);
   };
 
   const getRanking = async (filterBy, order) => {
-    return await httpInstance.get(`/user-sender/ranking/${filterBy}/${order}`);
+    return await httpInstance.get(`/user/ranking/${filterBy}/${order}`);
   };
 
   const deleteAccount = async (accountId) => {
-    await httpInstance.put(`/user-sender/${accountId}/delete-account`);
+    await httpInstance.put(`/user/${accountId}/delete-account`);
   };
 
   const getRecipients = async () => {
-    return await httpInstance.get(`/user-sender/list-recipients`);
+    return await httpInstance.get(`/user/list-recipients`);
   };
 
   return useMemo(
