@@ -68,7 +68,7 @@ export function useCollectionPointApi() {
     return await httpInstance.get(`/collection-point/list-pending-collections`);
   };
 
-  const validateCollection = async (requestId, collectionPointId) => {
+  const validateCollection = async (collectionPointId, requestId) => {
     return await httpInstance.put(
       `/collection-point/${collectionPointId}/validate-collection/${requestId}`
     );
@@ -91,6 +91,7 @@ export function useCollectionPointApi() {
       getPendingCollections,
       validateCollection,
     }),
+    //eslint-disable-next-line
     []
   );
 }

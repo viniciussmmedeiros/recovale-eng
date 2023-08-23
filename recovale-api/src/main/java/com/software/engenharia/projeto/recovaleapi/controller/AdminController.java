@@ -35,4 +35,9 @@ public class AdminController {
     public void deleteCreatedAccount(@PathVariable Long accountId) {
         service.deleteCreatedAccount(accountId);
     }
+
+    @PutMapping("/{accountId}/delete-account")
+    public void deleteAccount(@PathVariable Long accountId) {
+        service.deleteAccount(accountId);
+    }
 }

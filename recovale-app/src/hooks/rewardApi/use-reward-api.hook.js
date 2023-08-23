@@ -28,7 +28,7 @@ export function useRewardApi() {
   };
 
   const updateReward = async (rewardId, rewardData) => {
-    await httpInstance.put(`/reward/${rewardId}/delete`, rewardData);
+    await httpInstance.put(`/reward/${rewardId}/update`, rewardData);
   };
 
   return useMemo(

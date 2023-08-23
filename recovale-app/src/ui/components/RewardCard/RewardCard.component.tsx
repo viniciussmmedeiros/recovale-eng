@@ -1,8 +1,8 @@
-import { RewardModal } from "..";
 import "./RewardCard.component.style.css";
+import { RewardModal } from "..";
 import { useState } from "react";
 
-export function RewardCard({ data, handleClaim }: any) {
+export function RewardCard({ data, handleClaim, setRefreshList }: any) {
   const [isRewardModalOpen, setIsRewardModalOpen] = useState(false);
 
   return (
@@ -23,6 +23,7 @@ export function RewardCard({ data, handleClaim }: any) {
         <RewardModal
           handleModal={setIsRewardModalOpen}
           data={handleClaim ? null : data}
+          setRefreshList={setRefreshList}
         />
       )}
     </div>

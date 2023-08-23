@@ -2,6 +2,8 @@ import "./ManageRewards.screen.style.css";
 import { useState, useEffect } from "react";
 import { RewardCard, RewardModal } from "../../components";
 import { useRewardApi } from "../../../hooks/rewardApi/use-reward-api.hook";
+import { useToastData } from "../../../context/toast/toast.context";
+import { AxiosError } from "axios";
 
 interface Reward {
   id: number;
@@ -12,36 +14,59 @@ interface Reward {
 }
 
 export function ManageRewardsScreen() {
+  const [, setToastData] = useToastData();
   const rewardApi = useRewardApi();
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
   const [rewardsDataList, setRewardsDataList] = useState<Reward[] | null>([]);
+  const [refreshList, setRefreshList] = useState(false);
 
   useEffect(() => {
     const fetchRewardsDataList = async () => {
-      const dataResponse = await rewardApi.getRewardsList(null);
+      try {
+        const dataResponse = await rewardApi.getRewardsList(null);
 
-      setRewardsDataList(dataResponse);
+        setRewardsDataList(dataResponse);
+      } catch (error) {
+        const err = error as AxiosError<{ message: string }>;
+        setToastData({
+          show: true,
+          message: err.response?.data.message,
+          customClass: "error",
+        });
+      }
     };
 
     fetchRewardsDataList();
-  }, []);
+  }, [rewardApi, setToastData, refreshList]);
 
   return (
     <section className="page-content">
       <h2>Gerenciar Recompensas</h2>
-      <button onClick={() => setIsRegistrationModalOpen(true)}>
+      <button
+        onClick={() => setIsRegistrationModalOpen(true)}
+        className="register-new-reward-btn"
+      >
         Cadastrar nova recompensa
       </button>
       {isRegistrationModalOpen && (
-        <RewardModal handleModal={setIsRegistrationModalOpen} />
+        <RewardModal
+          handleModal={setIsRegistrationModalOpen}
+          setRefreshList={setRefreshList}
+        />
       )}
-      {rewardsDataList && rewardsDataList.length > 0 ? (
-        rewardsDataList.map((reward) => (
-          <RewardCard key={reward.id} data={reward} />
-        ))
-      ) : (
-        <span>Nenhuma recompensa disponível.</span>
-      )}
+      <section className="rewards-list-wrapper">
+        {rewardsDataList && rewardsDataList.length > 0 ? (
+          rewardsDataList.map((reward) => (
+            <RewardCard
+              key={reward.id}
+              data={reward}
+              setRefreshList={setRefreshList}
+            />
+          ))
+        ) : (
+          <span>Nenhuma recompensa disponível.</span>
+        )}
+      </section>
     </section>
   );
 }

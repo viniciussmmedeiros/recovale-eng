@@ -29,6 +29,9 @@ public class WasteCollectionRequest {
     private Long senderId;
 
     @Column
+    private Long recipientId;
+
+    @Column
     private Long adminId;
 
     @Column

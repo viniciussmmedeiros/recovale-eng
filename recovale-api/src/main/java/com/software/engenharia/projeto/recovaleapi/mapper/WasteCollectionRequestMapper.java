@@ -3,8 +3,6 @@ package com.software.engenharia.projeto.recovaleapi.mapper;
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListWasteCollectionRequestResponse;
 import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequest;
 
-import java.util.List;
-
 public class WasteCollectionRequestMapper {
     public static WasteCollectionRequest toEntity(Long pointId, Long accountId) {
         WasteCollectionRequest entity = new WasteCollectionRequest();

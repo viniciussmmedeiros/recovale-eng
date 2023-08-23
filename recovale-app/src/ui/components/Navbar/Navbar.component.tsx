@@ -3,15 +3,27 @@ import { useEffect } from "react";
 import { useAccountData } from "../../../context/account/account.context";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useToastData } from "../../../context/toast/toast.context";
+import { AxiosError } from "axios";
 
-export function Navbar({ showNavbar, setShowNavbar }: any) {
-  const navigate = useNavigate();
+export function Navbar({ showNavbar }: any) {
   const [accountData, setAccountData] = useAccountData();
+  const [, setToastData] = useToastData();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("recovale_account_data");
-    setAccountData({});
-    navigate("/*");
+    try {
+      localStorage.removeItem("recovale_account_data");
+      setAccountData({});
+      navigate("/*");
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
+    }
   };
 
   useEffect(() => {
@@ -19,6 +31,7 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
       localStorage.getItem("recovale_account_data") || "{}"
     );
     setAccountData(storedAccountData);
+    //eslint-disable-next-line
   }, []);
 
   return (
@@ -31,11 +44,6 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
           {accountData &&
             (accountData.type === "ADMIN" || accountData.type === "SENDER") && (
               <>
-                <li>
-                  <Link to="/search-collection-points">
-                    Consultar Pontos de Coleta
-                  </Link>
-                </li>
                 <li>
                   <Link to="/ranking">Consultar Ranking</Link>
                 </li>
@@ -66,6 +74,9 @@ export function Navbar({ showNavbar, setShowNavbar }: any) {
           )}
           {accountData && accountData.type === "SENDER" && (
             <>
+              <li>
+                <Link to="/search-collection-points">Pontos de Coleta</Link>
+              </li>
               <li>
                 <Link to="/search-rewards">Resgatar Recompensas</Link>
               </li>

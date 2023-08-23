@@ -1,12 +1,15 @@
 import "./CreatedAccountModal.component.style.css";
 import { useAdminApi } from "../../../hooks/adminApi/use-admin-api.hook";
 import { useState } from "react";
+import { useToastData } from "../../../context/toast/toast.context";
+import { AxiosError } from "axios";
 
-export function CreatedAccountModal({ data, handleModal }: any) {
+export function CreatedAccountModal({ data, handleModal, setRefresh }: any) {
+  const [, setToastData] = useToastData();
+  const adminApi = useAdminApi();
   const [accountData, setAccountData] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const adminApi = useAdminApi();
 
   const handleSetAccountData = (e: any) => {
     const { name, value } = e.target;
@@ -16,16 +19,40 @@ export function CreatedAccountModal({ data, handleModal }: any) {
   const handleAccountUpdate = async () => {
     try {
       await adminApi.updateCreatedAccount(accountData);
+      setRefresh((previousValue: boolean) => !previousValue);
+      handleModal(false);
+      setToastData({
+        show: true,
+        message: "Conta atualizada com sucesso.",
+        customClass: "success",
+      });
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
     }
   };
 
   const handleAccountDeletion = async () => {
     try {
       await adminApi.deleteCreatedAccount(accountData.id);
+      setRefresh((previousValue: boolean) => !previousValue);
+      handleModal(false);
+      setToastData({
+        show: true,
+        message: "Conta deletada com sucesso.",
+        customClass: "success",
+      });
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
     }
   };
 
@@ -36,7 +63,7 @@ export function CreatedAccountModal({ data, handleModal }: any) {
           X
         </button>
         <span>Editar conta</span>
-        <span>{accountData.type}</span>
+        <span>{accountData.type === "COLLECTOR" ? "Coletor" : "Admin"}</span>
         <span>
           Username:
           {isEditing ? (
@@ -71,12 +98,12 @@ export function CreatedAccountModal({ data, handleModal }: any) {
             </>
           )}
           {isDeleting && (
-            <>
+            <div className="delete-created-account">
               <span>Tem certeza de que deseja deletar essa conta ?</span>
               <span>Operação irreversível</span>
-              <button onClick={() => setIsDeleting(false)}>Cancelar</button>
               <button onClick={() => handleAccountDeletion()}>Confirmar</button>
-            </>
+              <button onClick={() => setIsDeleting(false)}>Cancelar</button>
+            </div>
           )}
           {!isEditing && !isDeleting && (
             <>

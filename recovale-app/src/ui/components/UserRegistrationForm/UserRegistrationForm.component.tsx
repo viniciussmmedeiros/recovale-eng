@@ -14,10 +14,10 @@ const REGISTRATION_DATA = {
 };
 
 export function UserRegistrationForm({ switchForm }: any) {
-  const authApi = useAuthApi();
-  const navigate = useNavigate();
   const [, setToastData] = useToastData();
   const [, setAccountData] = useAccountData();
+  const navigate = useNavigate();
+  const authApi = useAuthApi();
   const [registrationData, setRegistrationData] = useState(REGISTRATION_DATA);
 
   const handleSetRegistrationData = (

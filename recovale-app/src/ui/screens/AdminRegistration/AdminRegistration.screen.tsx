@@ -3,9 +3,12 @@ import { useAccountData } from "../../../context/account/account.context";
 import { useToastData } from "../../../context/toast/toast.context";
 import { useAuthApi } from "../../../hooks/authApi/use-auth-api.hook";
 import { useState } from "react";
+import { AxiosError } from "axios";
 
 export function AdminRegistrationScreen() {
+  const [, setToastData] = useToastData();
   const [accountData] = useAccountData();
+  const authApi = useAuthApi();
   const DEFAULT_ADMIN_DATA = {
     username: "",
     password: "",
@@ -13,8 +16,6 @@ export function AdminRegistrationScreen() {
     createdBy: accountData.id,
   };
   const [employeeData, setEmployeeData] = useState(DEFAULT_ADMIN_DATA);
-  const authApi = useAuthApi();
-  const [, setToastData] = useToastData();
 
   const handleAdminRegistration = async (
     event: React.FormEvent<HTMLFormElement>
@@ -29,9 +30,10 @@ export function AdminRegistrationScreen() {
         customClass: "success",
       });
     } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
       setToastData({
         show: true,
-        message: "Some wild error happened!",
+        message: err.response?.data.message,
         customClass: "error",
       });
     }

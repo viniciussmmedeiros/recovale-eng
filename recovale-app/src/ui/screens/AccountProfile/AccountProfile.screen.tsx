@@ -6,14 +6,15 @@ import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { useState } from "react";
 import { useToastData } from "../../../context/toast/toast.context";
 import { useNavigate } from "react-router-dom";
-import { Map } from "../../components";
 
 export function AccountProfileScreen() {
-  const navigate = useNavigate();
   const [, setToastData] = useToastData();
+  const [accountData, setAccountData] = useAccountData();
+  const navigate = useNavigate();
+  const adminApi = useAdminApi();
+  const userApi = useUserApi();
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [accountData, setAccountData] = useAccountData();
   const DEFAULT_COMMON_DATA = {
     username: accountData.username,
     password: accountData.password,
@@ -24,11 +25,9 @@ export function AccountProfileScreen() {
   };
   const [commonData, setCommonData] = useState(DEFAULT_COMMON_DATA);
   const [userData, setUserData] = useState(DEFAULT_USER_DATA);
-  const adminApi = useAdminApi();
-  const userApi = useUserApi();
   const handleSaveChanges = async () => {
     try {
-      if (accountData.type === "ADMIN") {
+      if (accountData.type === "ADMIN" || accountData.type === "COLLECTOR") {
         await adminApi.updateProfile(accountData.id, commonData);
       } else {
         await userApi.updateProfile(accountData.id, {
@@ -73,7 +72,11 @@ export function AccountProfileScreen() {
 
   const handleAccountDeletion = async () => {
     try {
-      await userApi.deleteAccount(accountData.id);
+      if (accountData.type === "ADMIN" || accountData.type === "COLLECTOR") {
+        await adminApi.deleteAccount(accountData.id);
+      } else {
+        await userApi.deleteAccount(accountData.id);
+      }
       localStorage.removeItem("recovale_account_data");
       setAccountData({});
       navigate("/*");
@@ -83,7 +86,12 @@ export function AccountProfileScreen() {
         message: "Conta deletada com sucesso!",
       });
     } catch (error) {
-      console.log(error);
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
     }
   };
 
@@ -106,8 +114,12 @@ export function AccountProfileScreen() {
         </label>
 
         <label>
-          {accountData.type !== "ADMIN" && "Email:"}
-          {isEditing && accountData.type !== "ADMIN" ? (
+          {accountData.type !== "ADMIN" &&
+            accountData.type !== "COLLECTOR" &&
+            "Email:"}
+          {isEditing &&
+          accountData.type !== "ADMIN" &&
+          accountData.type !== "COLLECTOR" ? (
             <input
               type="text"
               name="email"
@@ -122,7 +134,9 @@ export function AccountProfileScreen() {
         <label>
           {accountData.type === "SENDER" && "CPF"}
           {accountData.type === "RECIPIENT" && "CNPJ"}
-          {isEditing && accountData.type !== "ADMIN" ? (
+          {isEditing &&
+          accountData.type !== "ADMIN" &&
+          accountData.type !== "COLLECTOR" ? (
             <input
               type="text"
               name="cpfCnpj"

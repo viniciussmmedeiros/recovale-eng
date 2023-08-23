@@ -1,0 +1,10 @@
+.waste-collection-request-card-wrapper .request-card-header {
+  display: flex;
+  flex-direction: column;
+  transition: 0.15s;
+}
+
+.waste-collection-request-card-wrapper .request-card-header:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

@@ -17,6 +17,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #989797;
+  color: black;
   border-radius: 8px;
   padding: 1rem;
   width: 40%;
@@ -35,4 +36,11 @@
 .created-account-modal .modal-content .close-btn:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.created-account-modal .modal-content .delete-created-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }

@@ -95,10 +95,6 @@ UC22:
 [X] Validar coleta
 [X] Estado do ponto de coleta muda para vazio, ponto de coleta para coletado.
 
-################################################################################
-################################################################################
-################################################################################
-
 UC14:
 [ ] Descartar
 [ ] O remetente pode obter pontos ao descartar em um ponto de coleta

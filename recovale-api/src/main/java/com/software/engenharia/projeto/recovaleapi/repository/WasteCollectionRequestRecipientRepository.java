@@ -1,6 +1,5 @@
 package com.software.engenharia.projeto.recovaleapi.repository;
 
-import com.software.engenharia.projeto.recovaleapi.model.Reward;
 import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequestRecipient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

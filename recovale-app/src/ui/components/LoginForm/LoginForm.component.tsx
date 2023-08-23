@@ -5,14 +5,13 @@ import { useAccountData } from "../../../context/account/account.context";
 import { useNavigate } from "react-router-dom";
 import { useToastData } from "../../../context/toast/toast.context";
 import { AxiosError } from "axios";
-import { Map } from "../Map/Map.component";
 const LOGIN_DATA = {
   username: "",
   password: "",
 };
 
 export function LoginForm({ switchForm }: any) {
-  const [toastData, setToastData] = useToastData();
+  const [, setToastData] = useToastData();
   const authApi = useAuthApi();
   const navigate = useNavigate();
   const [, setAccountData] = useAccountData();
@@ -39,7 +38,6 @@ export function LoginForm({ switchForm }: any) {
       navigate("/your-profile");
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
-      console.log(error);
       setToastData({
         show: true,
         message: err.response?.data.message,
@@ -49,7 +47,7 @@ export function LoginForm({ switchForm }: any) {
   };
 
   const handleForgotPassword = () => {
-    alert("Sinto muito. [Ainda não implementado]");
+    alert("Não implementado.");
   };
 
   return (

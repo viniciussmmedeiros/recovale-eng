@@ -23,6 +23,19 @@
   height: 40%;
 }
 
+.reward-registration-modal .modal-content .reward-registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reward-registration-modal .modal-content .reward-registration-form label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+}
+
 .reward-registration-modal .modal-content .close-btn {
   border-radius: 8px;
   border: none;
@@ -35,4 +48,13 @@
 .reward-registration-modal .modal-content .close-btn:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.reward-register-btn {
+  width: 40%;
+}
+
+.reward-update-btns {
+  display: flex;
+  gap: 2rem;
 }

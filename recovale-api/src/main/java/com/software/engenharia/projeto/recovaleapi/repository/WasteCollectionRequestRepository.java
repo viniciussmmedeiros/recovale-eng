@@ -4,7 +4,6 @@ import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.Arrays;
 import java.util.List;
 
 public interface WasteCollectionRequestRepository extends JpaRepository<WasteCollectionRequest, Long> {
@@ -14,4 +13,7 @@ public interface WasteCollectionRequestRepository extends JpaRepository<WasteCol
 
     @Query(value="SELECT * FROM waste_collection_request WHERE status = 'SCHEDULED'", nativeQuery = true)
     List<WasteCollectionRequest> findAllScheduled();
+
+    @Query(value="SELECT * FROM waste_collection_request WHERE collection_point_id = ?1 AND sender_id = ?2 AND status != 'DONE'", nativeQuery = true)
+    WasteCollectionRequest findExistingRequest(Long pointId, Long accountId);
 }

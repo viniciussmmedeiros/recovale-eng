@@ -1,25 +1,36 @@
-import { useEffect, useState } from "react";
 import "./WasteCollectionRequestCard.component.style.css";
+import { useEffect, useState } from "react";
 import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { useCollectionPointApi } from "../../../hooks/collectionPointApi/use-collection-point-api.hook";
+import { useToastData } from "../../../context/toast/toast.context";
+import { AxiosError } from "axios";
+import { Map } from "../Map/Map.component";
 
-export function WasteCollectionRequestCard({ data }: any) {
-  console.log("data", data);
+export function WasteCollectionRequestCard({ data, setRefreshList }: any) {
+  const [, setToastData] = useToastData();
   const userApi = useUserApi();
   const collectionPointApi = useCollectionPointApi();
   const [isRequestOpen, setIsRequestOpen] = useState(false);
   const [recipientsList, setRecipientsList] = useState<any[] | null>();
   const [selectedRecipients, setSelectedRecipients] = useState<any[]>([]);
-  console.log(recipientsList);
-  console.log(selectedRecipients);
+
   useEffect(() => {
     const fetchRecipients = async () => {
-      const response = await userApi.getRecipients();
-      await setRecipientsList(response);
+      try {
+        const response = await userApi.getRecipients();
+        setRecipientsList(response);
+      } catch (error) {
+        const err = error as AxiosError<{ message: string }>;
+        setToastData({
+          show: true,
+          message: err.response?.data.message,
+          customClass: "error",
+        });
+      }
     };
 
     fetchRecipients();
-  }, []);
+  }, [setToastData, userApi]);
 
   const handleSelectRecipient = (id: any, e: any) => {
     if (!selectedRecipients.includes(id)) {
@@ -33,26 +44,45 @@ export function WasteCollectionRequestCard({ data }: any) {
   };
 
   const handleSendNotification = async () => {
-    await collectionPointApi.sendNotification(selectedRecipients, data.id);
-    setIsRequestOpen(false);
+    try {
+      await collectionPointApi.sendNotification(selectedRecipients, data.id);
+      setRefreshList((previousValue: boolean) => !previousValue);
+      setToastData({
+        show: true,
+        message: "Notificação enviada com sucesso!",
+        customClass: "success",
+      });
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
+    }
   };
 
   return (
-    <div
-      className="waste-collection-request-card-wrapper"
-      onClick={() => setIsRequestOpen(true)}
-    >
-      <span>{data.id}</span>
-      <span>{data.senderId}</span>
-      <span>{data.collectionPointId}</span>
-      <span>{data.status}</span>
-
+    <div className="waste-collection-request-card-wrapper">
+      <div
+        className="request-card-header"
+        onClick={() => setIsRequestOpen((previousValue) => !previousValue)}
+      >
+        <span>Ponto: {data.pointName} (clique para enviar notificação)</span>
+        <span>
+          Capacidade: {data.currentCapacity} / {data.capacity}
+        </span>
+      </div>
+      <Map
+        setLocation={null}
+        location={{ lat: data.latitude, lng: data.longitude }}
+      />
       {isRequestOpen && (
         <div>
           {recipientsList && recipientsList.length > 0 ? (
             <>
               {recipientsList.map((recipient) => (
-                <div>
+                <div key={recipient.id}>
                   <input
                     type="checkbox"
                     onClick={(e) => handleSelectRecipient(recipient.id, e)}

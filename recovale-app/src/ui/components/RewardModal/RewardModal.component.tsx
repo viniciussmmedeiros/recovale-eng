@@ -1,8 +1,11 @@
 import "./RewardModal.component.style.css";
 import { useState } from "react";
 import { useRewardApi } from "../../../hooks/rewardApi/use-reward-api.hook";
+import { useToastData } from "../../../context/toast/toast.context";
+import { AxiosError } from "axios";
 
-export function RewardModal({ data, handleModal }: any) {
+export function RewardModal({ data, handleModal, setRefreshList }: any) {
+  const [, setToastData] = useToastData();
   const rewardApi = useRewardApi();
   const DEFAULT_REWARD_DATA = {
     title: data ? data.title : "",
@@ -22,22 +25,65 @@ export function RewardModal({ data, handleModal }: any) {
     setRewardData((previousData: any) => ({ ...previousData, [name]: value }));
   };
 
-  const handleRewardRegistration = (e: any) => {
+  const handleRewardRegistration = async (e: any) => {
     e.preventDefault();
-
-    const handleRegistration = async () => {
+    try {
       await rewardApi.registerReward(rewardData);
-    };
-
-    handleRegistration();
+      setRefreshList((previousValue: boolean) => !previousValue);
+      handleModal(false);
+      setToastData({
+        show: true,
+        customClass: "success",
+        message: "Recompensa criada com sucesso!",
+      });
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
+    }
   };
 
   const handleRewardDeletion = async () => {
-    await rewardApi.deleteReward(data.id);
+    try {
+      await rewardApi.deleteReward(data.id);
+      setRefreshList((previousValue: boolean) => !previousValue);
+      handleModal(false);
+      setToastData({
+        show: true,
+        customClass: "success",
+        message: "Recompensa deletada com sucesso!",
+      });
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
+    }
   };
 
   const handleRewardUpdate = async () => {
-    await rewardApi.updateReward(data.id, rewardData);
+    try {
+      await rewardApi.updateReward(data.id, rewardData);
+      setRefreshList((previousValue: boolean) => !previousValue);
+      handleModal(false);
+      setToastData({
+        show: true,
+        customClass: "success",
+        message: "Recompensa atualizada com sucesso!",
+      });
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      setToastData({
+        show: true,
+        message: err.response?.data.message,
+        customClass: "error",
+      });
+    }
   };
 
   return (
@@ -45,7 +91,10 @@ export function RewardModal({ data, handleModal }: any) {
       <div className="reward-registration-modal">
         <div className="modal-content">
           <button onClick={() => handleModal(false)}>X</button>
-          <form onSubmit={handleRewardRegistration}>
+          <form
+            onSubmit={handleRewardRegistration}
+            className="reward-registration-form"
+          >
             <label htmlFor="">
               Título
               <input
@@ -82,26 +131,38 @@ export function RewardModal({ data, handleModal }: any) {
                 onChange={(e) => handleSetRewardData(e)}
               />
             </label>
-            {!data && <button type="submit">Cadastrar</button>}
+            {!data && (
+              <button type="submit" className="reward-register-btn">
+                Cadastrar
+              </button>
+            )}
             {data && !isEditing && !isDeleting && (
-              <>
-                <button onClick={() => setIsEditing(true)}>Atualizar</button>
+              <div className="reward-update-btns">
+                <button type="button" onClick={() => setIsEditing(true)}>
+                  Atualizar
+                </button>
                 <button type="button" onClick={() => setIsDeleting(true)}>
                   Deletar
                 </button>
-              </>
+              </div>
             )}
             {isEditing && (
               <>
-                <button onClick={() => setIsEditing(false)}>Cancelar</button>
-                <button onClick={() => handleRewardUpdate()}>Salvar</button>
+                <button type="button" onClick={() => setIsEditing(false)}>
+                  Cancelar
+                </button>
+                <button type="button" onClick={() => handleRewardUpdate()}>
+                  Salvar
+                </button>
               </>
             )}
             {isDeleting && (
               <>
-                <span>Tem certeza de que deseja deletar essa conta ?</span>
+                <span>Tem certeza de que deseja deletar essa recompensa ?</span>
                 <span>Operação irreversível</span>
-                <button onClick={() => setIsDeleting(false)}>Cancelar</button>
+                <button type="button" onClick={() => setIsDeleting(false)}>
+                  Cancelar
+                </button>
                 <button type="button" onClick={() => handleRewardDeletion()}>
                   Confirmar
                 </button>

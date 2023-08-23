@@ -1,6 +1,5 @@
 package com.software.engenharia.projeto.recovaleapi.repository;
 
-import com.software.engenharia.projeto.recovaleapi.model.CollectionPoint;
 import com.software.engenharia.projeto.recovaleapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

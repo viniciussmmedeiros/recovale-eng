@@ -1,0 +1,26 @@
+.notification-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #004d41;
+  padding: 1rem;
+  border-radius: 12px;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+
+.notification-card-wrapper .notification-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-card-wrapper button {
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s;
+  padding: 0.25rem;
+}
+
+.notification-card-wrapper button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

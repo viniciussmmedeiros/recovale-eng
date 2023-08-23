@@ -1,12 +1,21 @@
 import "./Map.component.style.css";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { useState, useRef, useMemo, useCallback, useEffect } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useState, useRef, useMemo, useCallback } from "react";
+import MarkerIcon from "../../../assets/marker-icon.png";
+import L from "leaflet";
 
 const center = {
-  lat: 51.505,
-  lng: -0.09,
+  lat: -30.0688247,
+  lng: -51.1217022,
 };
+
+function getIcon(size) {
+  return L.icon({
+    iconUrl: MarkerIcon,
+    iconSize: [size, size],
+  });
+}
 
 function DraggableMarker({ setLocation, location }) {
   const [draggable, setDraggable] = useState(false);
@@ -35,13 +44,14 @@ function DraggableMarker({ setLocation, location }) {
       eventHandlers={eventHandlers}
       position={position}
       ref={markerRef}
+      icon={getIcon(34)}
     >
       {!location && (
         <Popup minWidth={90}>
           <span onClick={toggleDraggable}>
             {draggable
-              ? "Marker is draggable"
-              : "Click here to make marker draggable"}
+              ? "Marcador está arrastável"
+              : "Clique aqui para tornar o marcador arrastável"}
           </span>
         </Popup>
       )}
@@ -50,7 +60,7 @@ function DraggableMarker({ setLocation, location }) {
 }
 
 export function Map({ setLocation, location }) {
-  const position = [51.505, -0.09];
+  const position = [-30.0688247, -51.1217022];
 
   return (
     <MapContainer
@@ -62,11 +72,6 @@ export function Map({ setLocation, location }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* <Marker position={position}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
       <DraggableMarker setLocation={setLocation} location={location} />
     </MapContainer>
   );

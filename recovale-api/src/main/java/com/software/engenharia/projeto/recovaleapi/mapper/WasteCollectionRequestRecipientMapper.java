@@ -1,8 +1,6 @@
 package com.software.engenharia.projeto.recovaleapi.mapper;
 
 import com.software.engenharia.projeto.recovaleapi.controller.response.ListNotificationResponse;
-import com.software.engenharia.projeto.recovaleapi.controller.response.ListWasteCollectionRequestResponse;
-import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequest;
 import com.software.engenharia.projeto.recovaleapi.model.WasteCollectionRequestRecipient;
 
 public class WasteCollectionRequestRecipientMapper {

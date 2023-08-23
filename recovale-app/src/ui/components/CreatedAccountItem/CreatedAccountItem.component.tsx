@@ -2,7 +2,7 @@ import "./CreatedAccountItem.component.style.css";
 import { CreatedAccountModal } from "../CreatedAccountModal/CreatedAccountModal.component";
 import { useState } from "react";
 
-export function CreatedAccountItem({ data }: any) {
+export function CreatedAccountItem({ data, setRefresh }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -17,7 +17,11 @@ export function CreatedAccountItem({ data }: any) {
         <span>Username: {data.username}</span>
       </div>
       {isModalOpen && (
-        <CreatedAccountModal data={data} handleModal={setIsModalOpen} />
+        <CreatedAccountModal
+          data={data}
+          handleModal={setIsModalOpen}
+          setRefresh={setRefresh}
+        />
       )}
     </>
   );

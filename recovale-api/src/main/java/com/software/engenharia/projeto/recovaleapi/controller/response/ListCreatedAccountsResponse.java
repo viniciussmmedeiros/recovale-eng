@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ListCreatedAccountsResponse {
-
     private Long id;
     @Enumerated(EnumType.STRING)
     private String type;

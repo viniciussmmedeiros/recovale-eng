@@ -1,0 +1,4 @@
+.collection-request-header {
+  display: flex;
+  flex-direction: column;
+}

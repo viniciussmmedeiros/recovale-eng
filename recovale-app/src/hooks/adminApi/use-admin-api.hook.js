@@ -28,6 +28,10 @@ export function useAdminApi() {
     await httpInstance.put(`admin/delete-created-account/${accountId}`);
   };
 
+  const deleteAccount = async (accountId) => {
+    await httpInstance.put(`/admin/${accountId}/delete-account`);
+  };
+
   return useMemo(
     () => ({
       updateProfile,
@@ -35,6 +39,7 @@ export function useAdminApi() {
       getCreatedAccounts,
       updateCreatedAccount,
       deleteCreatedAccount,
+      deleteAccount,
     }),
     //eslint-disable-next-line
     []

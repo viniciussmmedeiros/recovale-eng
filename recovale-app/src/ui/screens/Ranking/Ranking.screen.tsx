@@ -2,14 +2,17 @@ import "./Ranking.screen.style.css";
 import { useState, useEffect } from "react";
 import { useUserApi } from "../../../hooks/userApi/use-user-api.hook";
 import { RankingItem } from "../../components";
+import { AxiosError } from "axios";
+import { useToastData } from "../../../context/toast/toast.context";
 
 export function RankingScreen() {
+  const [, setToastData] = useToastData();
+  const userApi = useUserApi();
   const [filterOptions, setFilterOptions] = useState({
     filterBy: "currentPoints",
     order: "DESC",
   });
   const [rankingData, setRankingData] = useState<any[] | null>(null);
-  const userApi = useUserApi();
 
   useEffect(() => {
     const fetchRankingData = async () => {
@@ -21,12 +24,17 @@ export function RankingScreen() {
 
         setRankingData(response);
       } catch (error) {
-        console.log(error);
+        const err = error as AxiosError<{ message: string }>;
+        setToastData({
+          show: true,
+          message: err.response?.data.message,
+          customClass: "error",
+        });
       }
     };
 
     fetchRankingData();
-  }, [filterOptions]);
+  }, [filterOptions, userApi, setToastData]);
 
   const handleSetFilterOptions = (e: any) => {
     const { name, value } = e.target;

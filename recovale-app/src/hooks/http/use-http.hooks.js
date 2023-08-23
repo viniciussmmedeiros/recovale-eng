@@ -25,11 +25,19 @@ export function useHttp(baseURL, headers) {
   };
 
   const put = (url, data) => {
-    return instance.put(url, data);
+    try {
+      return instance.put(url, data);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const _delete = (url) => {
-    return instance.delete(url);
+    try {
+      return instance.delete(url);
+    } catch (error) {
+      throw error;
+    }
   };
 
   return {

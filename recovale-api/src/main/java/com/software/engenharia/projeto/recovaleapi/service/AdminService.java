@@ -62,4 +62,12 @@ public class AdminService {
 
         employeeRepository.save(account);
     }
+
+    public void deleteAccount(Long accountId) {
+        Employee account = employeeRepository.findById(accountId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Conta não encontrada."));
+
+        account.setDeleted(true);
+
+        employeeRepository.save(account);
+    }
 }

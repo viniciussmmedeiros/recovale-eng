@@ -22,9 +22,9 @@ interface UserPointsData {
 
 export function ClaimRewardScreen() {
   const [, setToastData] = useToastData();
+  const [accountData] = useAccountData();
   const rewardApi = useRewardApi();
   const userApi = useUserApi();
-  const [accountData] = useAccountData();
   const [rewardsList, setRewardsList] = useState<Reward[] | null>(null);
   const [pointsFilter, setPointsFilter] = useState<string | null>(null);
   const [resetSearch, setResetSearch] = useState(false);
@@ -34,23 +34,41 @@ export function ClaimRewardScreen() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const userPointsResponse = await userApi.getPoints(accountData.id);
+      try {
+        const userPointsResponse = await userApi.getPoints(accountData.id);
 
-      setUserPointsData(userPointsResponse);
+        setUserPointsData(userPointsResponse);
+      } catch (error) {
+        const err = error as AxiosError<{ message: string }>;
+        setToastData({
+          show: true,
+          message: err.response?.data.message,
+          customClass: "error",
+        });
+      }
     };
 
     fetchUserData();
-  }, [resetSearch]);
+  }, [resetSearch, accountData.id, userApi, setToastData]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const listResponse = await rewardApi.getRewardsList(pointsFilter);
+      try {
+        const listResponse = await rewardApi.getRewardsList(pointsFilter);
 
-      setRewardsList(listResponse);
+        setRewardsList(listResponse);
+      } catch (error) {
+        const err = error as AxiosError<{ message: string }>;
+        setToastData({
+          show: true,
+          message: err.response?.data.message,
+          customClass: "error",
+        });
+      }
     };
 
     fetchData();
-  }, [resetSearch]);
+  }, [resetSearch, rewardApi, setToastData]);
 
   const handleClearFilter = () => {
     setPointsFilter(null);

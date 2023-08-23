@@ -43,6 +43,9 @@ public class AuthService {
             }
             return UserMapper.toResponse(userEntity);
         } else if(nonNull(employeeEntity)){
+            if(employeeEntity.isDeleted()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Funcionário não encontrado.");
+            }
             return EmployeeMapper.toResponse(employeeEntity);
         }
 
