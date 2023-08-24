@@ -22,4 +22,4 @@ INSERT INTO reward (id, title, description, points, quantity_available)
 	(52, 'Garrafinha De Água', 'Uma Garrafinha De Água Personalizada.', 280, 5),
         (53, 'Bateria usada', 'Uma bela bateria usada.', 1, 999),
         (54, 'Ingresso Cinema - Oppenheimer', 'Ingresso para o filme Oppenheimer.', 130, 999),
-        (55, 'Ingresso Cinema - Barbie', 'Ingresso para o filme Barbie.', 357, 2),
+        (55, 'Ingresso Cinema - Barbie', 'Ingresso para o filme Barbie.', 357, 2);
